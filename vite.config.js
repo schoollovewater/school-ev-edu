@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['logo.png', 'logo-192.png', 'logo-512.png'],
+      includeAssets: ['logo.png', 'logo-192.png', 'logo-512.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'SCHOOL EV EDU',
         short_name: 'EV Edu',
