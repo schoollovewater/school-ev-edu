@@ -1,0 +1,65 @@
+[
+  {
+    "id": "bms",
+    "acronym": "BMS",
+    "term": "Battery Management System",
+    "vietnamese": "Hệ thống quản lý pin",
+    "description": "Hệ thống giám sát và điều khiển quá trình sạc/xả của pack pin, cân bằng các cell, đo nhiệt độ, dòng điện và điện áp để đảm bảo pin hoạt động an toàn và hiệu quả.",
+    "tag": "Battery",
+    "related": ["soc", "soh", "pack"]
+  },
+  {
+    "id": "vcu",
+    "acronym": "VCU",
+    "term": "Vehicle Control Unit",
+    "vietnamese": "Bộ điều khiển trung tâm xe",
+    "description": "Là bộ não của xe điện, thu thập dữ liệu từ người lái (chân ga, chân phanh) và các cảm biến, sau đó phối hợp hoạt động của các hệ thống như BMS, Inverter, và Motor.",
+    "tag": "Control",
+    "related": ["bms", "inverter"]
+  },
+  {
+    "id": "inverter",
+    "acronym": "Inverter",
+    "term": "Inverter",
+    "vietnamese": "Bộ biến tần",
+    "description": "Thiết bị chuyển đổi dòng điện một chiều (DC) từ pin thành dòng điện xoay chiều (AC) để cấp cho động cơ điện, đồng thời chuyển ngược từ AC về DC khi phanh tái sinh.",
+    "tag": "Power",
+    "related": ["motor", "battery"]
+  },
+  {
+    "id": "soc",
+    "acronym": "SoC",
+    "term": "State of Charge",
+    "vietnamese": "Trạng thái sạc",
+    "description": "Chỉ số thể hiện lượng năng lượng còn lại trong pin, tương đương với kim xăng trên xe động cơ đốt trong. Được tính bằng phần trăm (0 - 100%).",
+    "tag": "Battery",
+    "related": ["bms", "soh"]
+  },
+  {
+    "id": "regen",
+    "acronym": "Regen Braking",
+    "term": "Regenerative Braking",
+    "vietnamese": "Phanh tái sinh",
+    "description": "Cơ chế biến động cơ điện thành máy phát điện khi giảm tốc, thu hồi động năng để sạc lại pin, giúp tăng phạm vi hoạt động của xe.",
+    "tag": "Powertrain",
+    "related": ["motor", "inverter"]
+  },
+  {
+    "id": "adas",
+    "acronym": "ADAS",
+    "term": "Advanced Driver Assistance Systems",
+    "vietnamese": "Hệ thống hỗ trợ người lái nâng cao",
+    "description": "Tập hợp các hệ thống điện tử giúp người lái điều khiển xe an toàn, bao gồm cảnh báo chệch làn, phanh khẩn cấp tự động, và kiểm soát hành trình thích ứng.",
+    "tag": "Safety",
+    "related": ["sensor", "lidar"]
+  },
+  {
+    "id": "lidar",
+    "acronym": "LiDAR",
+    "term": "Light Detection and Ranging",
+    "vietnamese": "Cảm biến LiDAR",
+    "description": "Công nghệ cảm biến phát ra tia laser để đo khoảng cách và tạo bản đồ 3D xung quanh xe, đặc biệt quan trọng cho xe tự lái (Autonomous Vehicles).",
+    "tag": "Sensor",
+    "related": ["adas"]
+  }
+]
