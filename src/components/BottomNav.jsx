@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import { BookOpen, Map as MapIcon, Target, Sparkles, Settings as SettingsIcon } from 'lucide-react';
+import { BookOpen, Map as MapIcon, Target, Sparkles, Layers } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function BottomNav() {
   const navItems = [
     { name: 'Từ điển', path: '/', icon: BookOpen },
     { name: 'Sơ đồ', path: '/map', icon: MapIcon },
+    { name: 'Thẻ ghi nhớ', path: '/flashcards', icon: Layers },
     { name: 'Quiz', path: '/quiz', icon: Target },
     { name: 'AI', path: '/ai', icon: Sparkles },
-    { name: 'Cài đặt', path: '/settings', icon: SettingsIcon },
   ];
 
   return (
