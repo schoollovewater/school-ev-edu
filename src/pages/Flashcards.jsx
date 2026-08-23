@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import termsData from '../data/terms.json';
-import { RotateCcw, ChevronRight, ChevronLeft } from 'lucide-react';
+import { RotateCcw, ChevronRight, ChevronLeft, Volume2 } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function Flashcards() {
@@ -21,6 +21,15 @@ export default function Flashcards() {
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + termsData.length) % termsData.length);
     }, 150);
+  };
+
+  const handleSpeak = (e) => {
+    e.stopPropagation();
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(term.term);
+      utterance.lang = 'en-US';
+      window.speechSynthesis.speak(utterance);
+    }
   };
 
   if (!term) return null;
@@ -49,13 +58,23 @@ export default function Flashcards() {
             <span className="absolute top-6 left-6 px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
               {term.tag}
             </span>
-            <div className="absolute top-6 right-6 text-slate-300 dark:text-slate-600">
+            <div className="absolute top-6 right-6 flex items-center gap-3 text-slate-400 dark:text-slate-500">
+              <button 
+                onClick={handleSpeak}
+                className="hover:text-blue-500 transition-colors p-2 -m-2"
+                aria-label="Phát âm"
+              >
+                <Volume2 className="w-5 h-5" />
+              </button>
               <RotateCcw className="w-5 h-5" />
             </div>
             
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-1 tracking-tight">
               {term.term}
             </h2>
+            {term.phonetic && (
+              <p className="text-slate-500 font-mono text-sm mb-2">{term.phonetic}</p>
+            )}
             <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-4">
               ({term.acronym})
             </h3>
