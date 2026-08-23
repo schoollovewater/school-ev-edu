@@ -1,479 +1,521 @@
 [
   {
-    "id": "ev_core",
-    "term": "Hệ thống Lõi Xe Điện",
-    "acronym": "EV Core",
-    "vietnamese": "Trái tim xe điện",
-    "description": "Toàn bộ hệ thống cốt lõi cấu thành nên một chiếc xe ô tô điện (EV), bao gồm năng lượng, truyền động và điều khiển.",
-    "tag": "Core",
-    "parentId": null,
-    "childrenIds": [
-      "powertrain",
-      "energy_storage",
-      "charging",
-      "control",
-      "thermal",
-      "safety",
-      "braking"
-    ]
+    "id": "xgw",
+    "term": "Cross-Domain Gateway",
+    "acronym": "XGW",
+    "vietnamese": "Cổng kết nối đa miền",
+    "description": "Bộ trung tâm phân phối và kiểm soát giao tiếp dữ liệu.",
+    "tag": "Gateway",
+    "parentId": null
   },
   {
-    "id": "powertrain",
-    "term": "Hệ thống truyền lực",
-    "acronym": "Powertrain",
-    "vietnamese": "Hệ thống truyền lực",
-    "description": "Nhóm các thành phần chính tạo ra và truyền động năng để xe di chuyển.",
-    "tag": "Powertrain",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "motor",
-      "inverter",
-      "reducer"
-    ]
+    "id": "adas",
+    "term": "Advanced Driver Assistance Systems",
+    "acronym": "ADAS",
+    "vietnamese": "Bộ điều khiển hệ thống hỗ trợ người lái",
+    "description": "Máy tính trung tâm xử lý dữ liệu từ tất cả các cảm biến.",
+    "tag": "ADAS",
+    "parentId": "xgw",
+    "edgeType": "ethernet"
   },
   {
-    "id": "motor",
-    "term": "Động cơ điện",
-    "acronym": "Motor",
-    "vietnamese": "Động cơ kéo",
-    "description": "Chuyển đổi năng lượng điện thành cơ năng để quay bánh xe.",
-    "tag": "Powertrain",
-    "parentId": "powertrain",
-    "childrenIds": [
-      "pmsm",
-      "ac_induction"
-    ]
+    "id": "svmf",
+    "term": "Surround View Monitor Front",
+    "acronym": "SVMF",
+    "vietnamese": "Camera toàn cảnh phía trước",
+    "description": "Camera trước thuộc hệ thống quan sát 360 độ.",
+    "tag": "Camera",
+    "parentId": "adas",
+    "edgeType": "coaxial"
   },
   {
-    "id": "inverter",
-    "term": "Bộ biến tần",
-    "acronym": "Inverter",
-    "vietnamese": "Bộ nghịch lưu",
-    "description": "Chuyển đổi dòng điện một chiều (DC) từ pin sang xoay chiều (AC) cho động cơ, và ngược lại khi phanh tái sinh.",
-    "tag": "Powertrain",
-    "parentId": "powertrain",
-    "childrenIds": []
+    "id": "svml",
+    "term": "Surround View Monitor Left",
+    "acronym": "SVML",
+    "vietnamese": "Camera toàn cảnh bên trái",
+    "description": "Camera gương trái thuộc hệ thống quan sát 360 độ.",
+    "tag": "Camera",
+    "parentId": "adas",
+    "edgeType": "coaxial"
   },
   {
-    "id": "reducer",
-    "term": "Hộp giảm tốc",
-    "acronym": "Reducer",
-    "vietnamese": "Hộp số 1 cấp",
-    "description": "Giảm tốc độ vòng quay từ động cơ xuống mức phù hợp để truyền lực ra bánh xe, tăng mô-men xoắn.",
-    "tag": "Powertrain",
-    "parentId": "powertrain",
-    "childrenIds": []
+    "id": "svmr",
+    "term": "Surround View Monitor Right",
+    "acronym": "SVMR",
+    "vietnamese": "Camera toàn cảnh bên phải",
+    "description": "Camera gương phải thuộc hệ thống quan sát 360 độ.",
+    "tag": "Camera",
+    "parentId": "adas",
+    "edgeType": "coaxial"
   },
   {
-    "id": "pmsm",
-    "term": "Động cơ đồng bộ nam châm vĩnh cửu",
-    "acronym": "PMSM",
-    "vietnamese": "Động cơ PMSM",
-    "description": "Loại động cơ điện phổ biến nhất trên EV nhờ hiệu suất cao và nhỏ gọn.",
-    "tag": "Powertrain",
-    "parentId": "motor",
-    "childrenIds": []
+    "id": "svmri",
+    "term": "Surround View Monitor Rear",
+    "acronym": "SVMRi",
+    "vietnamese": "Camera toàn cảnh phía sau",
+    "description": "Camera lùi thuộc hệ thống quan sát 360 độ.",
+    "tag": "Camera",
+    "parentId": "adas",
+    "edgeType": "coaxial"
   },
   {
-    "id": "ac_induction",
-    "term": "Động cơ không đồng bộ",
-    "acronym": "AC Induction",
-    "vietnamese": "Động cơ cảm ứng",
-    "description": "Sử dụng cuộn dây cảm ứng thay vì nam châm hiếm, chi phí thấp hơn.",
-    "tag": "Powertrain",
-    "parentId": "motor",
-    "childrenIds": []
+    "id": "dms",
+    "term": "Driver Monitoring System",
+    "acronym": "DMS",
+    "vietnamese": "Hệ thống giám sát người lái",
+    "description": "Camera theo dõi mắt và tư thế của người lái.",
+    "tag": "Sensor",
+    "parentId": "adas",
+    "edgeType": "coaxial"
   },
   {
-    "id": "energy_storage",
-    "term": "Lưu trữ Năng lượng",
-    "acronym": "Battery System",
-    "vietnamese": "Hệ thống lưu trữ năng lượng",
-    "description": "Hệ thống pin và các linh kiện quản lý liên quan.",
-    "tag": "Battery",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "bms",
-      "hv_battery"
-    ]
+    "id": "ins",
+    "term": "Inertial Navigation System",
+    "acronym": "INS module",
+    "vietnamese": "Mô-đun định vị quán tính",
+    "description": "Xác định vị trí, gia tốc và hướng di chuyển.",
+    "tag": "Navigation",
+    "parentId": "adas",
+    "edgeType": "can"
+  },
+  {
+    "id": "rtk",
+    "term": "Real-Time Kinematic",
+    "acronym": "RTK antenna",
+    "vietnamese": "Ăng-ten định vị động học thời gian thực",
+    "description": "Ăng-ten GPS độ chính xác cao.",
+    "tag": "Navigation",
+    "parentId": "ins",
+    "edgeType": "lin"
+  },
+  {
+    "id": "mrgen21",
+    "term": "Mid Range Radar Gen 2.1",
+    "acronym": "MRGen 21",
+    "vietnamese": "Radar tầm trung",
+    "description": "Radar phía trước giúp phát hiện chướng ngại vật.",
+    "tag": "Radar",
+    "parentId": "adas",
+    "edgeType": "can"
+  },
+  {
+    "id": "scan48",
+    "term": "Windshield Camera 4.8",
+    "acronym": "SCAN 4.8",
+    "vietnamese": "Camera kính lái",
+    "description": "Camera chính phía trước.",
+    "tag": "Camera",
+    "parentId": "adas",
+    "edgeType": "can"
+  },
+  {
+    "id": "uss_fr",
+    "term": "Ultrasonic Sensor Front Right",
+    "acronym": "USS_FR",
+    "vietnamese": "Cảm biến siêu âm trước phải",
+    "description": "Cảm biến tiệm cận góc trước phải.",
+    "tag": "Sensor",
+    "parentId": "adas",
+    "edgeType": "lin"
+  },
+  {
+    "id": "uss_fcr",
+    "term": "Ultrasonic Sensor Front Center Right",
+    "acronym": "USS_FCR",
+    "vietnamese": "Cảm biến siêu âm trước giữa phải",
+    "description": "Cảm biến đỗ xe trước.",
+    "tag": "Sensor",
+    "parentId": "adas",
+    "edgeType": "lin"
+  },
+  {
+    "id": "uss_fl",
+    "term": "Ultrasonic Sensor Front Left",
+    "acronym": "USS_FL",
+    "vietnamese": "Cảm biến siêu âm trước trái",
+    "description": "Cảm biến đỗ xe trước.",
+    "tag": "Sensor",
+    "parentId": "adas",
+    "edgeType": "lin"
+  },
+  {
+    "id": "uss_rr",
+    "term": "Ultrasonic Sensor Rear Right",
+    "acronym": "USS_RR",
+    "vietnamese": "Cảm biến siêu âm sau phải",
+    "description": "Cảm biến đỗ xe sau.",
+    "tag": "Sensor",
+    "parentId": "adas",
+    "edgeType": "lin"
+  },
+  {
+    "id": "srro_fr",
+    "term": "Short Range Radar Object Front Right",
+    "acronym": "SRRO_FR",
+    "vietnamese": "Radar góc trước phải",
+    "description": "Phát hiện vật thể cắt ngang phía trước.",
+    "tag": "Radar",
+    "parentId": "adas",
+    "edgeType": "can"
+  },
+  {
+    "id": "srro_fl",
+    "term": "Short Range Radar Object Front Left",
+    "acronym": "SRRO_FL",
+    "vietnamese": "Radar góc trước trái",
+    "description": "Phát hiện vật thể cắt ngang phía trước.",
+    "tag": "Radar",
+    "parentId": "adas",
+    "edgeType": "can"
+  },
+  {
+    "id": "vcu",
+    "term": "Vehicle Control Unit",
+    "acronym": "VCU",
+    "vietnamese": "Bộ điều khiển trung tâm xe",
+    "description": "Phối hợp hoạt động của hệ thống pin, sạc và động cơ.",
+    "tag": "Control",
+    "parentId": "xgw",
+    "edgeType": "pt_can"
   },
   {
     "id": "bms",
     "term": "Battery Management System",
     "acronym": "BMS",
     "vietnamese": "Hệ thống quản lý pin",
-    "description": "Mạch điện tử giám sát trạng thái pin, kiểm soát sạc/xả, bảo vệ chống quá nhiệt và cân bằng cell pin.",
+    "description": "Bảo vệ, cân bằng cell pin.",
     "tag": "Battery",
-    "parentId": "energy_storage",
-    "childrenIds": [
-      "soc",
-      "soh"
-    ]
-  },
-  {
-    "id": "hv_battery",
-    "term": "High Voltage Battery",
-    "acronym": "HV Battery",
-    "vietnamese": "Cụm pin cao áp",
-    "description": "Nguồn dự trữ điện năng chính cho xe, thường có điện áp từ 400V đến 800V.",
-    "tag": "Battery",
-    "parentId": "energy_storage",
-    "childrenIds": [
-      "cell",
-      "module",
-      "pack"
-    ]
-  },
-  {
-    "id": "soc",
-    "term": "State of Charge",
-    "acronym": "SoC",
-    "vietnamese": "Trạng thái sạc",
-    "description": "Mức phần trăm dung lượng pin còn lại (giống như kim xăng).",
-    "tag": "Battery",
-    "parentId": "bms",
-    "childrenIds": []
-  },
-  {
-    "id": "soh",
-    "term": "State of Health",
-    "acronym": "SoH",
-    "vietnamese": "Tuổi thọ pin",
-    "description": "Chỉ số đánh giá độ chai của pin so với dung lượng ban đầu lúc mới mua.",
-    "tag": "Battery",
-    "parentId": "bms",
-    "childrenIds": []
-  },
-  {
-    "id": "cell",
-    "term": "Battery Cell",
-    "acronym": "Cell",
-    "vietnamese": "Tế bào pin",
-    "description": "Đơn vị lưu trữ năng lượng nhỏ nhất cấu tạo nên cụm pin.",
-    "tag": "Battery",
-    "parentId": "hv_battery",
-    "childrenIds": [
-      "lfp",
-      "nmc"
-    ]
-  },
-  {
-    "id": "module",
-    "term": "Battery Module",
-    "acronym": "Module",
-    "vietnamese": "Khối pin",
-    "description": "Nhiều cell pin ghép lại với nhau tạo thành module.",
-    "tag": "Battery",
-    "parentId": "hv_battery",
-    "childrenIds": []
-  },
-  {
-    "id": "pack",
-    "term": "Battery Pack",
-    "acronym": "Pack",
-    "vietnamese": "Cụm pin",
-    "description": "Nhiều module kết hợp với nhau, kèm hệ thống làm mát và BMS tạo thành pack pin hoàn chỉnh.",
-    "tag": "Battery",
-    "parentId": "hv_battery",
-    "childrenIds": []
-  },
-  {
-    "id": "lfp",
-    "term": "Lithium Iron Phosphate",
-    "acronym": "LFP",
-    "vietnamese": "Pin LFP",
-    "description": "Loại pin có tuổi thọ cao, chịu nhiệt tốt, chi phí rẻ nhưng mật độ năng lượng thấp.",
-    "tag": "Battery",
-    "parentId": "cell",
-    "childrenIds": []
-  },
-  {
-    "id": "nmc",
-    "term": "Nickel Manganese Cobalt",
-    "acronym": "NMC",
-    "vietnamese": "Pin NMC",
-    "description": "Loại pin có mật độ năng lượng cao, sạc nhanh nhưng đắt tiền và rủi ro cháy cao hơn.",
-    "tag": "Battery",
-    "parentId": "cell",
-    "childrenIds": []
-  },
-  {
-    "id": "charging",
-    "term": "Hệ thống Sạc",
-    "acronym": "Charging",
-    "vietnamese": "Hệ thống Sạc",
-    "description": "Tất cả các thành phần liên quan đến việc nạp năng lượng vào xe.",
-    "tag": "Charging",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "obc",
-      "dc_fast",
-      "ccs",
-      "chademo"
-    ]
+    "parentId": "vcu",
+    "edgeType": "pt_can"
   },
   {
     "id": "obc",
     "term": "On-Board Charger",
     "acronym": "OBC",
     "vietnamese": "Bộ sạc tích hợp",
-    "description": "Chuyển đổi dòng điện AC từ lưới điện nhà thành DC để sạc vào pin.",
-    "tag": "Charging",
-    "parentId": "charging",
-    "childrenIds": [
-      "v2l"
-    ]
+    "description": "Chuyển AC thành DC để sạc pin.",
+    "tag": "Powertrain",
+    "parentId": "vcu",
+    "edgeType": "pt_can"
   },
   {
-    "id": "dc_fast",
-    "term": "DC Fast Charging",
-    "acronym": "DCFC",
-    "vietnamese": "Sạc nhanh DC",
-    "description": "Sạc trực tiếp dòng DC vào pin (bỏ qua OBC), cho tốc độ sạc siêu nhanh.",
-    "tag": "Charging",
-    "parentId": "charging",
-    "childrenIds": []
+    "id": "dcdc",
+    "term": "DC-DC Converter",
+    "acronym": "DCDC",
+    "vietnamese": "Bộ chuyển đổi điện DC-DC",
+    "description": "Hạ áp từ pin cao áp xuống 12V.",
+    "tag": "Powertrain",
+    "parentId": "vcu",
+    "edgeType": "pt_can"
   },
   {
-    "id": "v2l",
-    "term": "Vehicle-to-Load",
-    "acronym": "V2L",
-    "vietnamese": "Cấp điện ngoài",
-    "description": "Khả năng của xe EV cấp nguồn AC ngược lại cho các thiết bị dân dụng (bếp, đèn...).",
-    "tag": "Charging",
-    "parentId": "obc",
-    "childrenIds": []
+    "id": "eds_f",
+    "term": "Electric Drive System - Front",
+    "acronym": "EDS-F",
+    "vietnamese": "Cụm động cơ điện trước",
+    "description": "Bao gồm động cơ, inverter và hộp giảm tốc đặt ở cầu trước.",
+    "tag": "Powertrain",
+    "parentId": "vcu",
+    "edgeType": "pt_can"
   },
   {
-    "id": "ccs",
-    "term": "Combined Charging System",
-    "acronym": "CCS",
-    "vietnamese": "Cổng sạc CCS",
-    "description": "Chuẩn cổng sạc phổ biến nhất tại Châu Âu và Mỹ, hỗ trợ cả AC và DC.",
-    "tag": "Charging",
-    "parentId": "charging",
-    "childrenIds": []
+    "id": "eds_r",
+    "term": "Electric Drive System - Rear",
+    "acronym": "EDS-R",
+    "vietnamese": "Cụm động cơ điện sau",
+    "description": "Cụm động cơ dẫn động cầu sau.",
+    "tag": "Powertrain",
+    "parentId": "vcu",
+    "edgeType": "pt_can"
   },
   {
-    "id": "chademo",
-    "term": "CHAdeMO",
-    "acronym": "CHAdeMO",
-    "vietnamese": "Cổng sạc CHAdeMO",
-    "description": "Chuẩn sạc nhanh DC của Nhật Bản.",
-    "tag": "Charging",
-    "parentId": "charging",
-    "childrenIds": []
-  },
-  {
-    "id": "control",
-    "term": "Hệ thống Điều khiển",
-    "acronym": "Control Unit",
-    "vietnamese": "Khối điều khiển",
-    "description": "Hệ thống máy tính và vi điều khiển.",
-    "tag": "Control",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "vcu",
-      "mcu",
-      "can"
-    ]
-  },
-  {
-    "id": "vcu",
-    "term": "Vehicle Control Unit",
-    "acronym": "VCU",
-    "vietnamese": "Bộ điều khiển trung tâm",
-    "description": "Bộ não chính của xe, phối hợp BMS, Inverter, và các hệ thống khác.",
-    "tag": "Control",
-    "parentId": "control",
-    "childrenIds": [
-      "ota"
-    ]
-  },
-  {
-    "id": "mcu",
-    "term": "Motor Control Unit",
-    "acronym": "MCU",
-    "vietnamese": "Bộ điều khiển động cơ",
-    "description": "Thường tích hợp với Inverter, điều khiển mô-men và tốc độ quay động cơ.",
-    "tag": "Control",
-    "parentId": "control",
-    "childrenIds": []
-  },
-  {
-    "id": "can",
-    "term": "Controller Area Network",
-    "acronym": "CAN Bus",
-    "vietnamese": "Mạng giao tiếp CAN",
-    "description": "Hệ thống mạng dây thần kinh giúp các module ECU trên xe giao tiếp với nhau.",
-    "tag": "Control",
-    "parentId": "control",
-    "childrenIds": []
-  },
-  {
-    "id": "ota",
-    "term": "Over-The-Air",
-    "acronym": "OTA",
-    "vietnamese": "Cập nhật không dây",
-    "description": "Cập nhật phần mềm hệ thống thông qua mạng Internet (như điện thoại thông minh).",
+    "id": "gs",
+    "term": "Gear Shifter",
+    "acronym": "GS",
+    "vietnamese": "Cần số điện tử",
+    "description": "Chuyển trạng thái số.",
     "tag": "Control",
     "parentId": "vcu",
-    "childrenIds": []
+    "edgeType": "pt_can"
   },
   {
-    "id": "thermal",
-    "term": "Quản lý Nhiệt",
-    "acronym": "Thermal",
-    "vietnamese": "Hệ thống làm mát/sưởi",
-    "description": "Đảm bảo pin và động cơ hoạt động ở nhiệt độ lý tưởng.",
-    "tag": "Thermal",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "heat_pump",
-      "liquid_cooling",
-      "ptc_heater"
-    ]
+    "id": "rcu",
+    "term": "Redundant Control Unit",
+    "acronym": "RCU",
+    "vietnamese": "Bộ điều khiển dự phòng",
+    "description": "Đảm bảo xe vẫn an toàn nếu hệ thống điều khiển chính gặp lỗi.",
+    "tag": "Control",
+    "parentId": "xgw",
+    "edgeType": "ch_can"
   },
   {
-    "id": "heat_pump",
-    "term": "Heat Pump",
-    "acronym": "Heat Pump",
-    "vietnamese": "Bơm nhiệt",
-    "description": "Hệ thống sưởi và làm mát cực kỳ tiết kiệm điện, thu hồi nhiệt thải từ động cơ để sưởi ấm cabin.",
-    "tag": "Thermal",
-    "parentId": "thermal",
-    "childrenIds": []
-  },
-  {
-    "id": "liquid_cooling",
-    "term": "Liquid Cooling",
-    "acronym": "Liquid Cooling",
-    "vietnamese": "Tản nhiệt dung dịch",
-    "description": "Dùng dung dịch tuần hoàn để làm mát cụm pin và động cơ.",
-    "tag": "Thermal",
-    "parentId": "thermal",
-    "childrenIds": []
-  },
-  {
-    "id": "ptc_heater",
-    "term": "PTC Heater",
-    "acronym": "PTC",
-    "vietnamese": "Bộ sưởi PTC",
-    "description": "Điện trở sưởi ấm nước làm mát hoặc không khí, tiêu tốn rất nhiều điện năng.",
-    "tag": "Thermal",
-    "parentId": "thermal",
-    "childrenIds": []
-  },
-  {
-    "id": "safety",
-    "term": "An toàn & ADAS",
-    "acronym": "Safety",
-    "vietnamese": "Hệ thống an toàn",
-    "description": "Các công nghệ an toàn tự động trên xe.",
-    "tag": "Safety",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "adas"
-    ]
-  },
-  {
-    "id": "adas",
-    "term": "Advanced Driver Assistance Systems",
-    "acronym": "ADAS",
-    "vietnamese": "Hệ thống hỗ trợ người lái",
-    "description": "Tập hợp các tính năng như giữ làn, phanh tự động khẩn cấp, cảnh báo điểm mù.",
-    "tag": "Safety",
-    "parentId": "safety",
-    "childrenIds": [
-      "lidar",
-      "radar",
-      "acc",
-      "lkas"
-    ]
-  },
-  {
-    "id": "lidar",
-    "term": "Light Detection and Ranging",
-    "acronym": "LiDAR",
-    "vietnamese": "Cảm biến LiDAR",
-    "description": "Cảm biến laser vẽ bản đồ 3D môi trường xung quanh, phục vụ xe tự lái.",
-    "tag": "Safety",
-    "parentId": "adas",
-    "childrenIds": []
-  },
-  {
-    "id": "radar",
-    "term": "Radar Sensor",
-    "acronym": "Radar",
-    "vietnamese": "Cảm biến sóng âm",
-    "description": "Phát hiện vật cản và đo khoảng cách, hoạt động tốt trong thời tiết xấu.",
-    "tag": "Safety",
-    "parentId": "adas",
-    "childrenIds": []
-  },
-  {
-    "id": "acc",
-    "term": "Adaptive Cruise Control",
-    "acronym": "ACC",
-    "vietnamese": "Ga tự động thích ứng",
-    "description": "Tự động giữ tốc độ và khoảng cách an toàn với xe phía trước.",
-    "tag": "Safety",
-    "parentId": "adas",
-    "childrenIds": []
-  },
-  {
-    "id": "lkas",
-    "term": "Lane Keeping Assist System",
-    "acronym": "LKAS",
-    "vietnamese": "Hỗ trợ giữ làn đường",
-    "description": "Tự động đánh lái nhẹ để giữ xe luôn ở giữa làn đường.",
-    "tag": "Safety",
-    "parentId": "adas",
-    "childrenIds": []
-  },
-  {
-    "id": "braking",
-    "term": "Hệ thống Phanh",
-    "acronym": "Braking",
-    "vietnamese": "Phanh",
-    "description": "Kiểm soát tốc độ và dừng xe.",
+    "id": "idb",
+    "term": "Integrated Dynamic Brake",
+    "acronym": "IDB",
+    "vietnamese": "Phanh điện tử tích hợp",
+    "description": "Bộ điều khiển phanh kết hợp ESP, ABS.",
     "tag": "Chassis",
-    "parentId": "ev_core",
-    "childrenIds": [
-      "regen",
-      "ebooster"
-    ]
+    "parentId": "xgw",
+    "edgeType": "ch_can"
   },
   {
-    "id": "regen",
-    "term": "Regenerative Braking",
-    "acronym": "Regen Braking",
-    "vietnamese": "Phanh tái sinh",
-    "description": "Động cơ đảo chiều thành máy phát điện khi nhả chân ga, giúp sạc lại pin và hãm tốc xe.",
+    "id": "eps1",
+    "term": "Electric Power Steering",
+    "acronym": "EPS",
+    "vietnamese": "Trợ lực lái điện tử",
+    "description": "Hệ thống mô-tơ trợ lực lái.",
     "tag": "Chassis",
-    "parentId": "braking",
-    "childrenIds": [
-      "one_pedal"
-    ]
+    "parentId": "xgw",
+    "edgeType": "ch_can"
   },
   {
-    "id": "one_pedal",
-    "term": "One-Pedal Driving",
-    "acronym": "1-Pedal",
-    "vietnamese": "Lái xe 1 bàn đạp",
-    "description": "Phanh tái sinh cực mạnh cho phép xe dừng hẳn chỉ bằng cách nhả chân ga.",
-    "tag": "Chassis",
-    "parentId": "regen",
-    "childrenIds": []
+    "id": "avas",
+    "term": "Acoustic Vehicle Alerting System",
+    "acronym": "AVAS",
+    "vietnamese": "Hệ thống tạo âm thanh giả",
+    "description": "Phát ra tiếng ồn nhân tạo.",
+    "tag": "Safety",
+    "parentId": "xgw",
+    "edgeType": "ch_can"
   },
   {
-    "id": "ebooster",
-    "term": "Electromechanical Brake Booster",
-    "acronym": "eBooster",
-    "vietnamese": "Trợ lực phanh điện tử",
-    "description": "Hệ thống trợ lực phanh không dùng bầu chân không truyền thống, phản hồi cực nhanh.",
-    "tag": "Chassis",
-    "parentId": "braking",
-    "childrenIds": []
+    "id": "yss",
+    "term": "Yaw Rate Sensor",
+    "acronym": "YSS",
+    "vietnamese": "Cảm biến gia tốc ngang",
+    "description": "Đo độ lệch hướng của xe.",
+    "tag": "Sensor",
+    "parentId": "xgw",
+    "edgeType": "ch_can"
+  },
+  {
+    "id": "eac",
+    "term": "Electric Air Conditioning Compressor",
+    "acronym": "EAC",
+    "vietnamese": "Máy nén điều hòa điện",
+    "description": "Lốc lạnh chạy bằng điện cao áp.",
+    "tag": "Thermal",
+    "parentId": "vcu",
+    "edgeType": "lin"
+  },
+  {
+    "id": "chm",
+    "term": "Cabin Heater Module",
+    "acronym": "CHM",
+    "vietnamese": "Mô-đun sưởi cabin",
+    "description": "Thường dùng PTC heater để sưởi ấm.",
+    "tag": "Thermal",
+    "parentId": "vcu",
+    "edgeType": "lin"
+  },
+  {
+    "id": "evalve1",
+    "term": "3-way Valve 1",
+    "acronym": "Evalve 1",
+    "vietnamese": "Van điều hướng nước làm mát 1",
+    "description": "Điều phối dòng chảy làm mát.",
+    "tag": "Thermal",
+    "parentId": "vcu",
+    "edgeType": "lin"
+  },
+  {
+    "id": "ags",
+    "term": "Active Grille Shutter",
+    "acronym": "AGS",
+    "vietnamese": "Lưới tản nhiệt đóng mở chủ động",
+    "description": "Tự động đóng/mở khe gió.",
+    "tag": "Thermal",
+    "parentId": "vcu",
+    "edgeType": "lin"
+  },
+  {
+    "id": "bcm",
+    "term": "Body Control Module",
+    "acronym": "BCM",
+    "vietnamese": "Mô-đun điều khiển thân vỏ",
+    "description": "Bộ não quản lý cửa, đèn, gạt mưa.",
+    "tag": "Body",
+    "parentId": "xgw",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "psmd",
+    "term": "Power Seat Memory - Driver",
+    "acronym": "PSM-D",
+    "vietnamese": "Nhớ vị trí ghế lái",
+    "description": "Điều khiển ghế chỉnh điện.",
+    "tag": "Body",
+    "parentId": "xgw",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "apm",
+    "term": "Anti-Pinch Module",
+    "acronym": "APM",
+    "vietnamese": "Mô-đun chống kẹt",
+    "description": "Cảm biến chống kẹt cửa sổ điện.",
+    "tag": "Body",
+    "parentId": "xgw",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "dsb",
+    "term": "Door Switch Block",
+    "acronym": "DSB",
+    "vietnamese": "Cụm công tắc cửa",
+    "description": "Các công tắc điều khiển kính.",
+    "tag": "Body",
+    "parentId": "apm",
+    "edgeType": "lin"
+  },
+  {
+    "id": "shvuf",
+    "term": "Seat Heating Ventilation Front",
+    "acronym": "SHVU-F",
+    "vietnamese": "Sưởi và làm mát ghế trước",
+    "description": "Điều khiển quạt và điện trở sưởi.",
+    "tag": "Body",
+    "parentId": "xgw",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "acm",
+    "term": "Airbag Control Module",
+    "acronym": "ACM",
+    "vietnamese": "Mô-đun điều khiển túi khí",
+    "description": "Kích nổ túi khí.",
+    "tag": "Body",
+    "parentId": "bcm",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "etg",
+    "term": "Electric Tail Gate",
+    "acronym": "ETG",
+    "vietnamese": "Cốp điện",
+    "description": "Điều khiển mô-tơ đóng mở cốp sau.",
+    "tag": "Body",
+    "parentId": "bcm",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "ccu",
+    "term": "Climate Control Unit",
+    "acronym": "CCU",
+    "vietnamese": "Bộ điều khiển điều hòa",
+    "description": "Giao diện và vi xử lý điều khiển nhiệt độ.",
+    "tag": "Body",
+    "parentId": "bcm",
+    "edgeType": "body_can"
+  },
+  {
+    "id": "itse",
+    "term": "Interior Temperature Sensor",
+    "acronym": "ITSe",
+    "vietnamese": "Cảm biến nhiệt độ trong xe",
+    "description": "Đo nhiệt độ cabin.",
+    "tag": "Sensor",
+    "parentId": "ccu",
+    "edgeType": "lin"
+  },
+  {
+    "id": "rls",
+    "term": "Rain Light Sensor",
+    "acronym": "RLS",
+    "vietnamese": "Cảm biến gạt mưa và ánh sáng",
+    "description": "Tự động bật đèn pha và gạt mưa.",
+    "tag": "Sensor",
+    "parentId": "bcm",
+    "edgeType": "lin"
+  },
+  {
+    "id": "scm",
+    "term": "Steering Column Module",
+    "acronym": "SCM",
+    "vietnamese": "Mô-đun trục lái",
+    "description": "Xử lý tín hiệu từ gạt xi-nhan.",
+    "tag": "Body",
+    "parentId": "bcm",
+    "edgeType": "lin"
+  },
+  {
+    "id": "wlc",
+    "term": "Wireless Charger",
+    "acronym": "WLC",
+    "vietnamese": "Sạc không dây",
+    "description": "Trạm sạc điện thoại trên xe.",
+    "tag": "Body",
+    "parentId": "bcm",
+    "edgeType": "lin"
+  },
+  {
+    "id": "alm",
+    "term": "Ambient Light Modules",
+    "acronym": "ALM",
+    "vietnamese": "Đèn viền nội thất",
+    "description": "Đèn trang trí đa màu sắc.",
+    "tag": "Body",
+    "parentId": "bcm",
+    "edgeType": "lin"
+  },
+  {
+    "id": "mhu",
+    "term": "Multimedia Head Unit (IPC)",
+    "acronym": "MHU",
+    "vietnamese": "Màn hình giải trí trung tâm",
+    "description": "Máy tính điều khiển hệ thống giải trí.",
+    "tag": "Infotainment",
+    "parentId": "xgw",
+    "edgeType": "ethernet"
+  },
+  {
+    "id": "mdu",
+    "term": "Multimedia Display Unit",
+    "acronym": "MDU",
+    "vietnamese": "Màn hình phụ",
+    "description": "Màn hình riêng dành cho hành khách.",
+    "tag": "Infotainment",
+    "parentId": "mhu",
+    "edgeType": "lvds"
+  },
+  {
+    "id": "rvc",
+    "term": "Rear View Camera",
+    "acronym": "RVC",
+    "vietnamese": "Camera lùi",
+    "description": "Camera quan sát phía sau chuyên biệt.",
+    "tag": "Camera",
+    "parentId": "mhu",
+    "edgeType": "lvds"
+  },
+  {
+    "id": "amp",
+    "term": "Amplifier",
+    "acronym": "AMP",
+    "vietnamese": "Âm ly",
+    "description": "Bộ khuếch đại âm thanh cho hệ thống loa.",
+    "tag": "Infotainment",
+    "parentId": "xgw",
+    "edgeType": "info_can"
+  },
+  {
+    "id": "hud",
+    "term": "Head Up Display",
+    "acronym": "HUD",
+    "vietnamese": "Màn hình hắt kính",
+    "description": "Hiển thị tốc độ lên kính chắn gió.",
+    "tag": "Infotainment",
+    "parentId": "xgw",
+    "edgeType": "info_can"
+  },
+  {
+    "id": "mfs",
+    "term": "Multifunction Switches",
+    "acronym": "MFS",
+    "vietnamese": "Nút bấm vô lăng",
+    "description": "Các nút điều khiển âm lượng.",
+    "tag": "Body",
+    "parentId": "xgw",
+    "edgeType": "lin"
   }
 ]

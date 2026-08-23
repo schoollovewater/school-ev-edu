@@ -45,7 +45,7 @@ export default function Flashcards() {
           style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
         >
           {/* Front of card */}
-          <div className="absolute inset-0 backface-hidden bg-white dark:bg-slate-800 rounded-3xl shadow-xl border-2 border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center p-8 text-center group-hover:shadow-2xl transition-shadow">
+          <div className="absolute inset-0 backface-hidden bg-white dark:bg-slate-800 rounded-3xl shadow-xl border-2 border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center p-6 text-center group-hover:shadow-2xl transition-shadow">
             <span className="absolute top-6 left-6 px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
               {term.tag}
             </span>
@@ -53,10 +53,13 @@ export default function Flashcards() {
               <RotateCcw className="w-5 h-5" />
             </div>
             
-            <h2 className="text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
-              {term.acronym}
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">
+              {term.term}
             </h2>
-            <p className="text-slate-400 dark:text-slate-500 text-sm font-medium">Nhấn để xem chi tiết</p>
+            <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+              ({term.acronym})
+            </h3>
+            <p className="text-slate-400 dark:text-slate-500 text-sm font-medium absolute bottom-6">Nhấn để xem chi tiết</p>
           </div>
 
           {/* Back of card */}
@@ -64,14 +67,11 @@ export default function Flashcards() {
             className="absolute inset-0 backface-hidden bg-blue-600 dark:bg-blue-700 rounded-3xl shadow-xl flex flex-col p-8 text-white rotate-y-180"
           >
             <div className="flex-1 flex flex-col justify-center">
-              <h3 className="text-2xl font-bold mb-2">
-                {term.term}
-              </h3>
-              <p className="text-blue-200 font-medium mb-6">
+              <h3 className="text-2xl font-bold mb-4">
                 {term.vietnamese}
-              </p>
+              </h3>
               <div className="w-12 h-1 bg-blue-400 rounded-full mb-6"></div>
-              <p className="text-blue-50 text-sm leading-relaxed">
+              <p className="text-blue-50 text-base leading-relaxed">
                 {term.description}
               </p>
             </div>
