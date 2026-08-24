@@ -49,7 +49,6 @@ const getEdgeColor = (type) => {
 };
 
 const getCustomLayout = (nodes) => {
-  // Domain Anchors
   const anchors = {
     center: { x: 0, y: 0 },
     info: { x: 0, y: -400 },
@@ -57,6 +56,7 @@ const getCustomLayout = (nodes) => {
     powertrain: { x: 0, y: 400 },
     body: { x: 800, y: 0 },
     chassis: { x: -400, y: 400 },
+    thermal: { x: 400, y: 400 },
   };
 
   const domainCounters = {
@@ -65,11 +65,15 @@ const getCustomLayout = (nodes) => {
     powertrain: 0,
     body: 0,
     chassis: 0,
-    center: 0
+    center: 0,
+    thermal: 0
   };
 
   const layoutedNodes = nodes.map((node) => {
-    const domain = node.data.fullTerm.domain || 'center';
+    let domain = node.data.fullTerm.domain || 'center';
+    if (!anchors[domain]) {
+      domain = 'center'; // Robust fallback
+    }
     const isGateway = node.id === 'xgw';
     
     let x = anchors[domain].x;
