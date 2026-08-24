@@ -1,6 +1,6 @@
 import termsData from '../data/terms.json';
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent';
 
 export async function analyzeDocumentWithGemini(text) {
   const apiKey = localStorage.getItem('school_ev_edu_api_key');

@@ -5,10 +5,16 @@
     "acronym": "XGW",
     "phonetic": "/ˈsɛntrəl ˈɡeɪtweɪ/",
     "vietnamese": "Cổng kết nối trung tâm",
-    "description": "Bộ định tuyến dữ liệu chính của xe, kết nối mọi mạng giao tiếp (CAN, LIN, Ethernet) với nhau.",
+    "description": "Đóng vai trò như 'trái tim' của hệ thống mạng trên xe. XGW (Central Gateway) là bộ định tuyến dữ liệu chính, chịu trách nhiệm chuyển tiếp, mã hóa và bảo mật thông tin giữa các miền (domain) khác nhau của xe E/E Architecture.",
     "tag": "Gateway",
     "parentId": null,
-    "domain": "center"
+    "domain": "center",
+    "functions": [
+      "Chuyển đổi giao thức giữa các mạng có tốc độ khác nhau (VD: Automotive Ethernet sang CAN-FD/LIN).",
+      "Bảo vệ an ninh mạng (Cybersecurity), ngăn chặn các truy cập trái phép.",
+      "Quản lý chẩn đoán (OBD) và trung chuyển bản cập nhật phần mềm (OTA) cho các ECU khác."
+    ],
+    "communication": "Kết nối trực tiếp tới cổng OBD, là Node gốc (parentId: null) phân nhánh ra các bus mạng tốc độ cao như PT-CAN, CH-CAN, Body-CAN và Ethernet."
   },
   {
     "id": "mhu",
@@ -16,11 +22,17 @@
     "acronym": "MHU",
     "phonetic": "/ˌmʌltiˈmiːdiə hɛd ˈjuːnɪt/",
     "vietnamese": "Màn hình giải trí trung tâm",
-    "description": "Máy tính điều khiển hệ thống giải trí, hiển thị bản đồ và cài đặt xe.",
+    "description": "Trung tâm xử lý và hiển thị thông tin giải trí đa phương tiện. MHU là bộ não của màn hình chính, cung cấp giao diện tương tác HMI cho người dùng.",
     "tag": "Infotainment",
     "parentId": "xgw",
     "edgeType": "ethernet",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Xử lý ứng dụng thông tin, bản đồ dẫn đường, âm nhạc và cài đặt xe.",
+      "Kết nối không dây (Bluetooth, Wi-Fi) với điện thoại thông minh (Apple CarPlay, Android Auto).",
+      "Hiển thị hình ảnh từ các camera lùi hoặc camera 360 độ (khi cần)."
+    ],
+    "communication": "Sử dụng Ethernet để kết nối với Gateway và TBox nhằm đảm bảo băng thông rộng cho dữ liệu media. Dùng GMSL hoặc FPD-Link để truyền video độ trễ thấp từ màn hình và camera."
   },
   {
     "id": "ipc",
@@ -28,11 +40,16 @@
     "acronym": "IPC",
     "phonetic": "/ˈɪnstrʊmənt ˈpænl ˈklʌstər/",
     "vietnamese": "Bảng đồng hồ táp-lô",
-    "description": "Màn hình hiển thị tốc độ và thông tin sau vô lăng.",
+    "description": "Bảng đồng hồ kỹ thuật số dành riêng cho người lái, hiển thị các thông tin vận hành cốt lõi và cảnh báo an toàn.",
     "tag": "Infotainment",
     "parentId": "mhu",
     "edgeType": "info-can",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Hiển thị tốc độ, mức pin, tầm hoạt động và các cảnh báo khẩn cấp.",
+      "Hiển thị trạng thái của hệ thống hỗ trợ lái (ADAS) và mô phỏng môi trường xung quanh."
+    ],
+    "communication": "Nhận dữ liệu thời gian thực từ MHU và XGW thông qua Info-CAN hoặc Ethernet (cho bản đồ). Đảm bảo tính sẵn sàng cao (High Availability)."
   },
   {
     "id": "tbox",
@@ -40,11 +57,17 @@
     "acronym": "TBox",
     "phonetic": "/ˌtɛlɪˈmætɪks bɒks/",
     "vietnamese": "Hộp thu phát sóng viễn thông",
-    "description": "Kết nối xe với mạng internet 4G/5G và vệ tinh.",
+    "description": "Mô-đun viễn thông (Telematics), đóng vai trò là cầu nối giữa xe và mạng lưới internet/vệ tinh bên ngoài.",
     "tag": "Infotainment",
     "parentId": "mhu",
     "edgeType": "ethernet",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Cung cấp kết nối mạng 4G/5G, phát Wi-Fi hotspot trong xe.",
+      "Gửi/nhận dữ liệu vị trí GPS và thực hiện cuộc gọi khẩn cấp (eCall).",
+      "Tiếp nhận và tải xuống các bản cập nhật phần mềm (OTA) từ máy chủ Cloud."
+    ],
+    "communication": "Giao tiếp với XGW và MHU qua Ethernet băng thông cao. Kết nối vật lý với ăng-ten vây cá trên mui xe."
   },
   {
     "id": "mdu",
@@ -52,11 +75,16 @@
     "acronym": "MDU",
     "phonetic": "/ˌmʌltiˈmiːdiə dɪˈspleɪ ˈjuːnɪt/",
     "vietnamese": "Màn hình phụ",
-    "description": "Màn hình dành riêng cho hành khách.",
+    "description": "Màn hình giải trí phụ dành riêng cho hành khách ghế phụ (Co-pilot), cung cấp không gian giải trí độc lập.",
     "tag": "Infotainment",
     "parentId": "mhu",
     "edgeType": "gmsl",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Phát video, phim và ứng dụng giải trí độc lập với MHU.",
+      "Ngăn chặn người lái nhìn thấy nội dung video khi xe đang di chuyển (Privacy mode)."
+    ],
+    "communication": "Truyền nhận hình ảnh video trực tiếp từ MHU thông qua liên kết tốc độ cao GMSL/FPD-Link."
   },
   {
     "id": "rvc",
@@ -64,11 +92,16 @@
     "acronym": "RVC",
     "phonetic": "/rɪər vjuː ˈkæmərə/",
     "vietnamese": "Camera lùi",
-    "description": "Camera lùi xem trực tiếp trên màn hình MHU.",
+    "description": "Camera góc rộng đặt ở đuôi xe, hỗ trợ quan sát điểm mù phía sau khi lùi.",
     "tag": "Camera",
     "parentId": "mhu",
     "edgeType": "gmsl",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Cung cấp hình ảnh trực tiếp khu vực phía sau đuôi xe.",
+      "Có thể kết hợp hiển thị vạch căn đường linh hoạt theo góc đánh lái."
+    ],
+    "communication": "Truyền tín hiệu video thô độ trễ thấp về MHU qua cáp đồng trục (GMSL hoặc FAKRA)."
   },
   {
     "id": "hud",
@@ -76,11 +109,16 @@
     "acronym": "HUD",
     "phonetic": "/hɛd ʌp dɪˈspleɪ/",
     "vietnamese": "Màn hình hắt kính",
-    "description": "Hiển thị thông tin lên kính chắn gió.",
+    "description": "Hệ thống hiển thị thông tin hắt lên kính chắn gió (Head Up Display), giúp người lái không cần rời mắt khỏi mặt đường.",
     "tag": "Infotainment",
     "parentId": "xgw",
     "edgeType": "info-can",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Hiển thị tốc độ, dẫn đường và biển báo giao thông ngay trên tầm nhìn.",
+      "HUD thực tế tăng cường (AR-HUD) có thể hiển thị mũi tên rẽ trực quan theo cảnh vật thật."
+    ],
+    "communication": "Nhận dữ liệu từ MHU và ADAS thông qua Info-CAN. Kết nối với cảm biến ánh sáng để tự động điều chỉnh độ sáng."
   },
   {
     "id": "amp",
@@ -88,11 +126,16 @@
     "acronym": "AMP",
     "phonetic": "/ˈɔːdiəʊ ˈæmplɪfaɪər/",
     "vietnamese": "Âm ly",
-    "description": "Bộ khuếch đại âm thanh vòm trên xe.",
+    "description": "Bộ khuếch đại âm thanh chuyên dụng (Amplifier), chịu trách nhiệm tạo ra trải nghiệm âm thanh vòm chất lượng cao.",
     "tag": "Infotainment",
     "parentId": "xgw",
     "edgeType": "info-can",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Khuếch đại tín hiệu âm thanh và điều phối ra các loa vệ tinh quanh xe.",
+      "Xử lý tín hiệu số (DSP) để tạo hiệu ứng âm thanh 3D, loại bỏ tiếng ồn chủ động (ANC)."
+    ],
+    "communication": "Nhận luồng âm thanh kỹ thuật số (A2B bus hoặc Ethernet) từ MHU, được cấp nguồn trực tiếp từ bình 12V."
   },
   {
     "id": "cpd",
@@ -100,11 +143,16 @@
     "acronym": "CPD",
     "phonetic": "/tʃaɪld ˈprɛzns dɪˈtɛktər/",
     "vietnamese": "Cảm biến trẻ em",
-    "description": "Phát hiện trẻ nhỏ bị bỏ quên trong xe.",
+    "description": "Hệ thống cảm biến rada vi sóng nhận diện sinh vật sống trong khoang xe (Child Presence Detector).",
     "tag": "Sensor",
     "parentId": "xgw",
     "edgeType": "info-can",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Phát hiện nhịp thở hoặc chuyển động cực nhỏ của trẻ em, thú cưng bị bỏ quên.",
+      "Kích hoạt còi báo động, hạ kính hoặc bật điều hòa nếu nhiệt độ khoang xe lên quá cao."
+    ],
+    "communication": "Giao tiếp qua Info-CAN hoặc Body-CAN để gửi cảnh báo đến BCM và XGW."
   },
   {
     "id": "easc",
@@ -112,11 +160,16 @@
     "acronym": "EASC",
     "phonetic": "/ɪˈlɛktrɪk əˈdʒʌst ˈstɪərɪŋ ˈkɒləm/",
     "vietnamese": "Vô lăng chỉnh điện",
-    "description": "Cột lái điều chỉnh thò thụt tự động.",
+    "description": "Hệ thống cột vô lăng chỉnh điện, mang lại sự tiện nghi trong việc ra vào xe.",
     "tag": "Chassis",
     "parentId": "xgw",
     "edgeType": "info-can",
-    "domain": "info"
+    "domain": "info",
+    "functions": [
+      "Điều chỉnh vô lăng 4 hướng (lên, xuống, thụt, thò) bằng điện.",
+      "Tự động thụt vô lăng khi tắt máy mở cửa để tạo không gian ra vào (Easy Entry)."
+    ],
+    "communication": "Kết nối vào Info-CAN để đồng bộ với hồ sơ người dùng (User Profile) và bộ nhớ ghế (PSM-D)."
   },
   {
     "id": "adas",
@@ -124,11 +177,17 @@
     "acronym": "ADAS",
     "phonetic": "/əˈdvɑːnst ˈdraɪvər əˈsɪstəns ˈsɪstəm/",
     "vietnamese": "Hệ thống hỗ trợ người lái",
-    "description": "Máy tính trung tâm xử lý dữ liệu tự lái từ camera, radar và siêu âm.",
+    "description": "Bộ não của hệ thống hỗ trợ lái xe tự động (ADAS Domain Controller). Xử lý khối lượng dữ liệu khổng lồ từ các cảm biến ngoại vi.",
     "tag": "ADAS",
     "parentId": "xgw",
     "edgeType": "ethernet",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Hợp nhất dữ liệu (Sensor Fusion) từ Radar, Camera và Siêu âm để tạo bản đồ môi trường 3D.",
+      "Ra quyết định điều khiển xe (Phanh khẩn cấp, Giữ làn, Tự động chuyển làn).",
+      "Tính toán quỹ đạo đỗ xe tự động."
+    ],
+    "communication": "Là trung tâm của miền ADAS, giao tiếp với các cảm biến qua ADAS-CAN, GMSL. Ra lệnh cho IDB và EPS qua PT-CAN hoặc Chassis-CAN."
   },
   {
     "id": "dms",
@@ -136,11 +195,16 @@
     "acronym": "DMS",
     "phonetic": "/ˈdraɪvər ˈmɒnɪtərɪŋ ˈsɪstəm/",
     "vietnamese": "Hệ thống giám sát người lái",
-    "description": "Camera theo dõi mắt và độ tập trung của tài xế.",
+    "description": "Camera hồng ngoại đặt ở cột A hoặc cụm đồng hồ, giám sát trạng thái của người lái.",
     "tag": "Sensor",
     "parentId": "adas",
     "edgeType": "gmsl",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Theo dõi ánh mắt, tần suất chớp mắt để phát hiện buồn ngủ hoặc mất tập trung.",
+      "Nhận diện khuôn mặt (Face ID) để đăng nhập hồ sơ người dùng cá nhân."
+    ],
+    "communication": "Dữ liệu hình ảnh được xử lý nội bộ hoặc truyền về ADAS/MHU qua GMSL để kích hoạt cảnh báo."
   },
   {
     "id": "ins",
@@ -148,11 +212,16 @@
     "acronym": "INS module",
     "phonetic": "/ɪˈnɜːʃəl ˌnævɪˈɡeɪʃən ˈsɪstəm/",
     "vietnamese": "Hệ thống định vị quán tính",
-    "description": "Định vị vị trí xe khi mất sóng GPS.",
+    "description": "Hệ thống dẫn đường quán tính sử dụng cảm biến gia tốc và con quay hồi chuyển 6 bậc tự do.",
     "tag": "Navigation",
     "parentId": "xgw",
     "edgeType": "ethernet",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Duy trì khả năng định vị tọa độ và hướng đi ngay cả khi mất tín hiệu GPS (vào hầm, hẻm núi).",
+      "Cung cấp thông số động lực học thân xe cho hệ thống tự lái."
+    ],
+    "communication": "Hoạt động song song và bù trừ sai số cho GPS, gửi tọa độ tinh chỉnh cho ADAS qua Ethernet."
   },
   {
     "id": "rtk",
@@ -160,11 +229,16 @@
     "acronym": "RTK",
     "phonetic": "/ˈrɪəlˌtaɪm kɪnəˈmætɪk ænˈtɛnə/",
     "vietnamese": "Ăng-ten định vị RTK",
-    "description": "Định vị chính xác từng centimet.",
+    "description": "Cụm ăng-ten định vị động học thời gian thực (Real-Time Kinematic), một công nghệ sửa lỗi GPS độ chính xác cao.",
     "tag": "Navigation",
     "parentId": "ins",
     "edgeType": "lin",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Nhận tín hiệu hiệu chỉnh từ trạm gốc trên mặt đất để đưa sai số GPS từ vài mét xuống mức centimet.",
+      "Cần thiết cho tính năng tự lái cấp độ cao (Level 3+) và hỗ trợ chuyển làn tự động."
+    ],
+    "communication": "Truyền dữ liệu tín hiệu viễn thông (đã sửa lỗi) vào INS hoặc ADAS qua mạng nội bộ LIN/CAN."
   },
   {
     "id": "scan",
@@ -172,11 +246,16 @@
     "acronym": "SCAN 4.8",
     "phonetic": "/ˈwɪndʃiːld smɑːt ˈkæmərə/",
     "vietnamese": "Camera thông minh kính lái",
-    "description": "Nhận diện biển báo và vạch kẻ đường.",
+    "description": "Camera thông minh gắn trên kính chắn gió phía trước (Smart Camera). Thường chứa sẵn chip xử lý ảnh độc lập.",
     "tag": "Camera",
     "parentId": "adas",
     "edgeType": "adas-can",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Nhận diện vạch kẻ đường, biển báo giao thông, xe cộ và người đi bộ phía trước.",
+      "Cung cấp dữ liệu chính cho hệ thống LKA (Giữ làn) và AEB (Phanh khẩn cấp)."
+    ],
+    "communication": "Truyền vector dữ liệu vật thể (Object data) về bộ điều khiển ADAS thông qua ADAS-CAN."
   },
   {
     "id": "mrge",
@@ -184,11 +263,16 @@
     "acronym": "MRGe 21",
     "phonetic": "/mɪd reɪndʒ ˈreɪdɑːr/",
     "vietnamese": "Radar tầm trung phía trước",
-    "description": "Radar chính theo dõi khoảng cách với xe trước (ACC).",
+    "description": "Radar sóng milimet tầm trung (thường hoạt động ở 77GHz) gắn ở lưới tản nhiệt phía trước.",
     "tag": "Radar",
     "parentId": "adas",
     "edgeType": "adas-can",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Đo chính xác khoảng cách và vận tốc tương đối của xe phía trước bằng hiệu ứng Doppler.",
+      "Là cảm biến cốt lõi của tính năng Kiểm soát hành trình thích ứng (ACC) và Cảnh báo va chạm trước (FCW)."
+    ],
+    "communication": "Phát sóng và nhận phản xạ, xử lý thô rồi gửi dữ liệu khoảng cách qua ADAS-CAN."
   },
   {
     "id": "srr_fr",
@@ -196,11 +280,16 @@
     "acronym": "SRR_FR",
     "phonetic": "/ʃɔːrt reɪndʒ ˈreɪdɑːr frʌnt raɪt/",
     "vietnamese": "Radar góc trước phải",
-    "description": "Phát hiện góc chết đầu xe.",
+    "description": "Radar góc ngắn phía trước bên phải, phát hiện vật thể ở vùng mù góc đầu xe.",
     "tag": "Radar",
     "parentId": "adas",
     "edgeType": "adas-can",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Quét các xe tạt đầu ở ngã tư.",
+      "Hỗ trợ đỗ xe ghép dọc/ngang."
+    ],
+    "communication": "ADAS-CAN"
   },
   {
     "id": "srr_fl",
@@ -208,11 +297,16 @@
     "acronym": "SRR_FL",
     "phonetic": "/ʃɔːrt reɪndʒ ˈreɪdɑːr frʌnt lɛft/",
     "vietnamese": "Radar góc trước trái",
-    "description": "Phát hiện góc chết đầu xe.",
+    "description": "Radar góc ngắn phía trước bên trái.",
     "tag": "Radar",
     "parentId": "adas",
     "edgeType": "adas-can",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Quét góc mù đầu xe trái.",
+      "Hỗ trợ cảnh báo va chạm giao lộ."
+    ],
+    "communication": "ADAS-CAN"
   },
   {
     "id": "srr_rr",
@@ -220,11 +314,16 @@
     "acronym": "SRR_RR",
     "phonetic": "/ʃɔːrt reɪndʒ ˈreɪdɑːr rɪər raɪt/",
     "vietnamese": "Radar góc sau phải",
-    "description": "Phát hiện xe cắt ngang khi lùi.",
+    "description": "Radar góc ngắn phía sau bên phải.",
     "tag": "Radar",
     "parentId": "adas",
     "edgeType": "adas-can",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Cảnh báo điểm mù (BSD) khi chuyển làn.",
+      "Cảnh báo phương tiện cắt ngang khi lùi (RCTA)."
+    ],
+    "communication": "ADAS-CAN"
   },
   {
     "id": "srr_rl",
@@ -232,11 +331,16 @@
     "acronym": "SRR_RL",
     "phonetic": "/ʃɔːrt reɪndʒ ˈreɪdɑːr rɪər lɛft/",
     "vietnamese": "Radar góc sau trái",
-    "description": "Phát hiện xe cắt ngang khi lùi.",
+    "description": "Radar góc ngắn phía sau bên trái.",
     "tag": "Radar",
     "parentId": "adas",
     "edgeType": "adas-can",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Cảnh báo mở cửa (DOW) cho hành khách.",
+      "Cảnh báo điểm mù phía sau."
+    ],
+    "communication": "ADAS-CAN"
   },
   {
     "id": "svmf",
@@ -244,11 +348,16 @@
     "acronym": "SVMF",
     "phonetic": "/səˈraʊnd vjuː ˈmɒnɪtər frʌnt/",
     "vietnamese": "Camera 360 trước",
-    "description": "Mắt camera trước.",
+    "description": "Mắt camera độ phân giải cao phía trước cản xe thuộc hệ thống 360 độ.",
     "tag": "Camera",
     "parentId": "adas",
     "edgeType": "gmsl",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Thu hình ảnh đầu xe với góc nhìn 190 độ.",
+      "Hỗ trợ tính năng nhìn xuyên gầm (Transparent Chassis)."
+    ],
+    "communication": "GMSL đến ADAS/MHU"
   },
   {
     "id": "svml",
@@ -256,11 +365,16 @@
     "acronym": "SVML",
     "phonetic": "/səˈraʊnd vjuː ˈmɒnɪtər lɛft/",
     "vietnamese": "Camera 360 trái",
-    "description": "Mắt camera gương trái.",
+    "description": "Mắt camera gắn dưới gương chiếu hậu bên trái.",
     "tag": "Camera",
     "parentId": "adas",
     "edgeType": "gmsl",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Quan sát bánh xe và thân xe bên trái.",
+      "Hiển thị góc mù khi xi nhan trái."
+    ],
+    "communication": "GMSL đến ADAS/MHU"
   },
   {
     "id": "svmr",
@@ -268,11 +382,16 @@
     "acronym": "SVMR",
     "phonetic": "/səˈraʊnd vjuː ˈmɒnɪtər raɪt/",
     "vietnamese": "Camera 360 phải",
-    "description": "Mắt camera gương phải.",
+    "description": "Mắt camera gắn dưới gương chiếu hậu bên phải.",
     "tag": "Camera",
     "parentId": "adas",
     "edgeType": "gmsl",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Quan sát bánh xe và thân xe bên phải.",
+      "Ghép ảnh toàn cảnh 360 (Bird-eye view)."
+    ],
+    "communication": "GMSL đến ADAS/MHU"
   },
   {
     "id": "svmri",
@@ -280,11 +399,16 @@
     "acronym": "SVMRi",
     "phonetic": "/səˈraʊnd vjuː ˈmɒnɪtər rɪər/",
     "vietnamese": "Camera 360 sau",
-    "description": "Mắt camera lùi 360.",
+    "description": "Mắt camera gắn ở cửa cốp sau cho hệ thống 360.",
     "tag": "Camera",
     "parentId": "adas",
     "edgeType": "gmsl",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Làm camera lùi và camera chiếu hậu điện tử.",
+      "Quan sát đuôi xe."
+    ],
+    "communication": "GMSL đến ADAS/MHU"
   },
   {
     "id": "uss_f",
@@ -292,11 +416,16 @@
     "acronym": "USS_FR/FCR/FCL/FL",
     "phonetic": "/ˌʌltrəˈsɒnɪk ˈsɛnsərz frʌnt/",
     "vietnamese": "Cụm siêu âm trước",
-    "description": "4 cảm biến đỗ xe cản trước.",
+    "description": "Cụm 4 cảm biến siêu âm (Ultrasonic Sensors) ở cản trước.",
     "tag": "Sensor",
     "parentId": "adas",
     "edgeType": "adas-lin",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Đo khoảng cách vật thể tĩnh phía trước khi đỗ xe.",
+      "Khoảng cách hoạt động hiệu quả từ 15cm - 2.5m."
+    ],
+    "communication": "Sử dụng giao thức LIN, gửi tín hiệu thô về hộp ADAS hoặc BCM để tính toán và phát tiếng bíp."
   },
   {
     "id": "uss_r",
@@ -304,11 +433,16 @@
     "acronym": "USS_RR/RCR/RCL/RL",
     "phonetic": "/ˌʌltrəˈsɒnɪk ˈsɛnsərz rɪər/",
     "vietnamese": "Cụm siêu âm sau",
-    "description": "4 cảm biến đỗ xe cản sau.",
+    "description": "Cụm 4 cảm biến siêu âm ở cản sau.",
     "tag": "Sensor",
     "parentId": "adas",
     "edgeType": "adas-lin",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Đo khoảng cách vật thể phía sau khi lùi.",
+      "Tự động kích hoạt phanh nếu phát hiện tường/chướng ngại vật quá gần."
+    ],
+    "communication": "Giao tiếp LIN."
   },
   {
     "id": "uss_bs",
@@ -316,11 +450,16 @@
     "acronym": "USS_FSL/FSR/RSL/RSR",
     "phonetic": "/ˌʌltrəˈsɒnɪk blaɪnd spɒt ˈsɛnsərz/",
     "vietnamese": "Cụm siêu âm điểm mù",
-    "description": "4 cảm biến đo điểm mù ngang hông xe.",
+    "description": "Cụm 4 cảm biến siêu âm tầm xa đặt ở hai hông xe (trước và sau).",
     "tag": "Sensor",
     "parentId": "adas",
     "edgeType": "adas-lin",
-    "domain": "adas"
+    "domain": "adas",
+    "functions": [
+      "Đo khoảng trống giữa các xe đang đỗ bên đường.",
+      "Dữ liệu sống còn cho tính năng Đỗ xe tự động (Auto Parking Assist)."
+    ],
+    "communication": "Giao tiếp LIN."
   },
   {
     "id": "eps",
@@ -328,11 +467,16 @@
     "acronym": "EPS",
     "phonetic": "/ɪˈlɛktrɪk ˈpaʊər ˈstɪərɪŋ/",
     "vietnamese": "Trợ lực lái điện",
-    "description": "Tích hợp cảm biến góc lái SAS.",
+    "description": "Hệ thống trợ lực lái điện tử (Electric Power Steering). Đóng vai trò thực thi đánh lái.",
     "tag": "Chassis",
     "parentId": "xgw",
     "edgeType": "ch-can",
-    "domain": "chassis"
+    "domain": "chassis",
+    "functions": [
+      "Trợ lực tay lái, giúp vần vô lăng nhẹ nhàng ở tốc độ thấp và đầm chắc ở tốc độ cao.",
+      "Nhận lệnh từ ADAS để tự động đánh lái (Giữ làn, Tự đỗ xe)."
+    ],
+    "communication": "Kết nối trực tiếp vào Chassis-CAN tốc độ cao nhất (bảo mật tối đa, độ trễ thấp). Chứa luôn cảm biến góc lái (SAS)."
   },
   {
     "id": "idb",
@@ -340,11 +484,17 @@
     "acronym": "IDB",
     "phonetic": "/ˈɪntɪɡreɪtɪd daɪˈnæmɪk breɪk/",
     "vietnamese": "Phanh điện tử tích hợp",
-    "description": "Cụm điều khiển phanh.",
+    "description": "Hệ thống phanh động lực học tích hợp (Integrated Dynamic Brake, hoặc One-Box Brake). Thay thế hoàn toàn bầu trợ lực chân không cơ học.",
     "tag": "Chassis",
     "parentId": "xgw",
     "edgeType": "ch-can",
-    "domain": "chassis"
+    "domain": "chassis",
+    "functions": [
+      "Khuếch đại lực phanh bằng mô tơ điện.",
+      "Pha trộn lực phanh ma sát và lực phanh tái sinh (Regen Braking) một cách mượt mà.",
+      "Thực thi phanh khẩn cấp (AEB) và ABS, ESC."
+    ],
+    "communication": "Chassis-CAN, có khả năng tự động lấy quyền kiểm soát phanh từ ADAS."
   },
   {
     "id": "rcu",
@@ -352,11 +502,16 @@
     "acronym": "RCU",
     "phonetic": "/liːn rɪˈdʌndənt kənˈtrəʊlər/",
     "vietnamese": "Bộ điều khiển dự phòng",
-    "description": "Back-up khi hệ thống chính lỗi.",
+    "description": "Bộ điều khiển dự phòng (Redundant Controller), thành phần bắt buộc cho xe tự lái cấp độ 3 trở lên.",
     "tag": "Control",
     "parentId": "xgw",
     "edgeType": "ch-can",
-    "domain": "chassis"
+    "domain": "chassis",
+    "functions": [
+      "Đóng vai trò làm bộ não phụ, liên tục theo dõi hệ thống chính (ADAS/IDB/EPS).",
+      "Sẽ lập tức tiếp quản quyền điều khiển nếu hệ thống chính gặp sự cố nhân mạng, đưa xe tấp lề an toàn."
+    ],
+    "communication": "Mạng CAN độc lập song song với các mạch chính."
   },
   {
     "id": "yss",
@@ -364,11 +519,16 @@
     "acronym": "YSS",
     "phonetic": "/jɔː reɪt ˈsɛnsər/",
     "vietnamese": "Cảm biến gia tốc ngang",
-    "description": "Cung cấp góc trượt cho hệ thống cân bằng.",
+    "description": "Cảm biến đo gia tốc ngang và góc trượt (Yaw Rate Sensor).",
     "tag": "Sensor",
     "parentId": "xgw",
     "edgeType": "ch-can",
-    "domain": "chassis"
+    "domain": "chassis",
+    "functions": [
+      "Đo lường độ văng đuôi, lật xe và gia tốc theo 3 trục (X,Y,Z).",
+      "Cung cấp thông tin để hệ thống Cân bằng điện tử (ESC/IDB) can thiệp phanh từng bánh."
+    ],
+    "communication": "Nối trực tiếp vào Chassis-CAN."
   },
   {
     "id": "avas",
@@ -376,11 +536,16 @@
     "acronym": "AVAS",
     "phonetic": "/əˈkuːstɪk ˈviːɪkl əˈlɜːtɪŋ ˈsɪstəm/",
     "vietnamese": "Âm thanh cảnh báo",
-    "description": "Loa phát tiếng ồn khi xe chạy chậm.",
+    "description": "Hệ thống phát âm thanh cảnh báo giả lập cho xe điện (Acoustic Vehicle Alerting System).",
     "tag": "Safety",
     "parentId": "xgw",
     "edgeType": "ch-can",
-    "domain": "chassis"
+    "domain": "chassis",
+    "functions": [
+      "Vì xe điện quá êm, AVAS sẽ phát ra âm thanh vo vo giả lập (như đĩa bay) khi xe chạy dưới 30km/h.",
+      "Cảnh báo người đi bộ và xe đạp về sự hiện diện của xe."
+    ],
+    "communication": "Chassis-CAN hoặc Body-CAN."
   },
   {
     "id": "acm",
@@ -388,11 +553,17 @@
     "acronym": "ACM",
     "phonetic": "/ˈɛəbæɡ kənˈtrəʊl ˈmɒdjuːl/",
     "vietnamese": "Điều khiển túi khí",
-    "description": "Kích nổ túi khí khi va chạm.",
+    "description": "Mô-đun điều khiển túi khí (Airbag Control Module) - hệ thống an toàn thụ động quan trọng nhất.",
     "tag": "Safety",
     "parentId": "xgw",
     "edgeType": "ch-can",
-    "domain": "chassis"
+    "domain": "chassis",
+    "functions": [
+      "Đọc dữ liệu từ cảm biến va chạm xung quanh xe.",
+      "Quyết định thời điểm và ngòi nổ túi khí nào cần bung trong một phần nghìn giây.",
+      "Ngắt điện cao áp (HV Interlock) khi xảy ra tai nạn nghiêm trọng."
+    ],
+    "communication": "Chassis-CAN, có đường dây cứng (Hard-wire) nối trực tiếp tới BMS và PDM để ngắt pin."
   },
   {
     "id": "vcu",
@@ -400,11 +571,17 @@
     "acronym": "VCU",
     "phonetic": "/ˈviːɪkl kənˈtrəʊl ˈjuːnɪt/",
     "vietnamese": "Điều khiển trung tâm",
-    "description": "Phối hợp truyền động và sạc.",
+    "description": "Hộp điều khiển trung tâm hệ truyền động (Vehicle Control Unit). Bộ não điều phối năng lượng.",
     "tag": "Control",
     "parentId": "xgw",
     "edgeType": "pt-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Tính toán mô-men xoắn yêu cầu dựa trên độ đạp chân ga của người lái.",
+      "Điều phối công suất giữa động cơ trước và sau (AWD).",
+      "Quyết định chế độ lái (Eco, Sport) và chiến lược quản lý nhiệt độ pin."
+    ],
+    "communication": "Trung tâm của Powertrain-CAN (PT-CAN), giao tiếp liên tục với BMS, EDS, và PDM."
   },
   {
     "id": "bms",
@@ -412,11 +589,17 @@
     "acronym": "BMS",
     "phonetic": "/ˈbætəri ˈmænɪdʒmənt ˈsɪstəm/",
     "vietnamese": "Quản lý pin",
-    "description": "Kiểm soát an toàn pin.",
+    "description": "Hệ thống quản lý pin điện áp cao (Battery Management System), thường nằm ngay bên trong khối pin (Battery Pack).",
     "tag": "Battery",
     "parentId": "vcu",
     "edgeType": "hv-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Giám sát điện áp, dòng điện và nhiệt độ của từng cell pin độc lập.",
+      "Cân bằng cell pin (Cell balancing) để kéo dài tuổi thọ.",
+      "Tính toán chỉ số SOC (State of Charge - % pin) và SOH (State of Health - Độ chai pin)."
+    ],
+    "communication": "Mạng HV-CAN độc lập bảo mật cao, kết nối trực tiếp với VCU."
   },
   {
     "id": "gs",
@@ -424,11 +607,16 @@
     "acronym": "GS",
     "phonetic": "/ɡɪər ˈʃɪftər/",
     "vietnamese": "Cần số",
-    "description": "Núm xoay chuyển số.",
+    "description": "Hệ thống điều khiển sang số bằng điện tử (Gear Shifter / Shift-by-wire).",
     "tag": "Control",
     "parentId": "vcu",
     "edgeType": "pt-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Chuyển các chế độ P-R-N-D thông qua núm xoay hoặc cần gạt.",
+      "Không có liên kết cơ học tới hộp số."
+    ],
+    "communication": "Gửi tín hiệu điện tử qua PT-CAN tới VCU."
   },
   {
     "id": "pdm",
@@ -436,11 +624,17 @@
     "acronym": "PDM",
     "phonetic": "/ˈpaʊər ˌdɪstrɪˈbjuːʃən ˈmɒdjuːl/",
     "vietnamese": "Phân phối điện (3-in-1)",
-    "description": "Tích hợp OBC và DCDC.",
+    "description": "Mô-đun phân phối điện năng tích hợp (Power Distribution Module), thường là khối nhôm lớn dưới nắp capo.",
     "tag": "Powertrain",
     "parentId": "vcu",
     "edgeType": "pt-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Chứa các bộ phận đóng ngắt dòng điện cao áp (Contactor, Fuse).",
+      "Phân phối điện 400V/800V từ pin tới động cơ (EDS) và lốc điều hòa (EAC).",
+      "Thường tích hợp sẵn OBC và DCDC (Hệ thống 3-in-1)."
+    ],
+    "communication": "PT-CAN và các đường cáp điện cao áp màu cam."
   },
   {
     "id": "obc",
@@ -448,11 +642,16 @@
     "acronym": "OBC",
     "phonetic": "/ɒn bɔːrd ˈtʃɑːrdʒər/",
     "vietnamese": "Bộ sạc AC",
-    "description": "Nằm trong PDM.",
+    "description": "Bộ sạc xoay chiều trên xe (On-Board Charger), nằm bên trong PDM.",
     "tag": "Powertrain",
     "parentId": "pdm",
     "edgeType": "hv-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Chuyển đổi dòng điện xoay chiều (AC) từ trạm sạc tại nhà thành điện một chiều (DC) nạp vào pin.",
+      "Quản lý công suất sạc AC (thường là 7kW, 11kW hoặc 22kW)."
+    ],
+    "communication": "HV-CAN, giao tiếp với súng sạc qua giao thức CP/PP."
   },
   {
     "id": "dcdc",
@@ -460,11 +659,16 @@
     "acronym": "DCDC",
     "phonetic": "/diː-siː-diː-siː kənˈvɜːrtər/",
     "vietnamese": "Biến áp DC-DC",
-    "description": "Hạ áp pin xuống 12V.",
+    "description": "Bộ chuyển đổi điện một chiều (DC-DC Converter), đóng vai trò như 'máy phát điện' (Alternator) của xe xăng.",
     "tag": "Powertrain",
     "parentId": "pdm",
     "edgeType": "hv-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Hạ điện áp từ pin cao áp (400V/800V) xuống 12V hoặc 48V.",
+      "Cấp nguồn cho toàn bộ các ECU, màn hình, đèn đóm trên xe và sạc cho bình ắc quy chì 12V dự phòng."
+    ],
+    "communication": "HV-CAN."
   },
   {
     "id": "eds_f",
@@ -472,11 +676,17 @@
     "acronym": "EDS-F",
     "phonetic": "/ɪˈlɛktrɪk draɪv ˈsɪstəm frʌnt/",
     "vietnamese": "Động cơ trước",
-    "description": "Trục dẫn động trước.",
+    "description": "Cụm dẫn động điện cầu trước (Electric Drive System). Thường là hệ thống 3-in-1 (Motor, Inverter, Reducer).",
     "tag": "Powertrain",
     "parentId": "vcu",
     "edgeType": "pt-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Inverter biến tần biến điện DC thành điện AC 3 pha cấp cho mô tơ.",
+      "Mô tơ (nam châm vĩnh cửu hoặc từ trở) sinh công quay bánh xe.",
+      "Hộp giảm tốc (Reducer) 1 cấp truyền lực."
+    ],
+    "communication": "PT-CAN."
   },
   {
     "id": "eds_r",
@@ -484,11 +694,16 @@
     "acronym": "EDS-R",
     "phonetic": "/ɪˈlɛktrɪk draɪv ˈsɪstəm rɪər/",
     "vietnamese": "Động cơ sau",
-    "description": "Trục dẫn động sau.",
+    "description": "Cụm dẫn động điện cầu sau.",
     "tag": "Powertrain",
     "parentId": "vcu",
     "edgeType": "pt-can",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Tương tự EDS_F nhưng truyền lực cho cầu sau.",
+      "Tạo thành hệ dẫn động 4 bánh toàn thời gian ảo (e-AWD)."
+    ],
+    "communication": "PT-CAN."
   },
   {
     "id": "eac",
@@ -496,11 +711,16 @@
     "acronym": "EAC",
     "phonetic": "/ɪˈlɛktrɪk ɛər kənˈdɪʃənɪŋ/",
     "vietnamese": "Lốc điều hòa",
-    "description": "Làm mát cabin và pin.",
+    "description": "Máy nén điều hòa điện áp cao (Electric Air Conditioning Compressor).",
     "tag": "Thermal",
     "parentId": "vcu",
     "edgeType": "vcu-lin",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Nén khí gas lạnh (R134a / R1234yf) bằng mô tơ dùng điện 400V.",
+      "Cốt lõi của hệ thống bơm nhiệt (Heat pump), làm mát khoang hành khách và làm mát khối pin."
+    ],
+    "communication": "VCU-LIN. Nhận lệnh tốc độ vòng quay từ VCU."
   },
   {
     "id": "chm",
@@ -508,11 +728,16 @@
     "acronym": "CHM",
     "phonetic": "/ˈkæbɪn ˈhiːtər ˈmɒdjuːl/",
     "vietnamese": "Bộ sưởi",
-    "description": "Sưởi PTC cao áp.",
+    "description": "Bộ sưởi dung dịch bằng điện áp cao (Cabin Heater Module / PTC Heater).",
     "tag": "Thermal",
     "parentId": "vcu",
     "edgeType": "vcu-lin",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Sử dụng thanh điện trở PTC dùng điện 400V để đun nóng dung dịch làm mát.",
+      "Làm ấm cabin vào mùa đông và sưởi ấm pin (Battery Heating) khi trời lạnh để sạc nhanh hơn."
+    ],
+    "communication": "VCU-LIN."
   },
   {
     "id": "evalve1",
@@ -520,11 +745,15 @@
     "acronym": "Evalve 1",
     "phonetic": "/ɪˌlɛkˈtrɒnɪk θriː-weɪ vælv wʌn/",
     "vietnamese": "Van 3 ngã số 1",
-    "description": "Điều phối nước làm mát.",
+    "description": "Van điều hướng chất lỏng 3 ngả số 1.",
     "tag": "Thermal",
     "parentId": "vcu",
     "edgeType": "vcu-lin",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Đổi dòng dung dịch làm mát giữa các vòng tuần hoàn (Cabin, Pin, Động cơ)."
+    ],
+    "communication": "VCU-LIN"
   },
   {
     "id": "evalve2",
@@ -532,11 +761,15 @@
     "acronym": "Evalve 2",
     "phonetic": "/ɪˌlɛkˈtrɒnɪk θriː-weɪ vælv tuː/",
     "vietnamese": "Van 3 ngã số 2",
-    "description": "Điều phối nước làm mát.",
+    "description": "Van điều hướng chất lỏng 3 ngả số 2.",
     "tag": "Thermal",
     "parentId": "vcu",
     "edgeType": "vcu-lin",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Phối hợp với Evalve1 để quản lý tối ưu nhiệt năng dư thừa từ động cơ truyền sang sưởi pin."
+    ],
+    "communication": "VCU-LIN"
   },
   {
     "id": "ags",
@@ -544,11 +777,16 @@
     "acronym": "AGS",
     "phonetic": "/ˈæktɪv ɡrɪl ˈʃʌtər/",
     "vietnamese": "Màn trập lưới tản nhiệt",
-    "description": "Khép mở lưới phía trước.",
+    "description": "Hệ thống cánh trập lưới tản nhiệt chủ động (Active Grill Shutter).",
     "tag": "Thermal",
     "parentId": "vcu",
     "edgeType": "vcu-lin",
-    "domain": "powertrain"
+    "domain": "powertrain",
+    "functions": [
+      "Mở ra khi pin/động cơ cần làm mát để đón gió.",
+      "Đóng lại khi chạy tốc độ cao để giảm lực cản không khí (Aero-drag), tăng tầm hoạt động (Range)."
+    ],
+    "communication": "VCU-LIN."
   },
   {
     "id": "bcm",
@@ -556,11 +794,17 @@
     "acronym": "BCM",
     "phonetic": "/ˈbɒdi kənˈtrəʊl ˈmɒdjuːl/",
     "vietnamese": "Điều khiển thân vỏ",
-    "description": "Tổng quản lý cửa, đèn.",
+    "description": "Bộ điều khiển thân vỏ trung tâm (Body Control Module). Quản lý mọi tính năng tiện nghi cốt lõi.",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Điều khiển hệ thống khóa cửa, đèn pha, đèn xi nhan, gạt mưa.",
+      "Nhận diện chìa khóa thông minh (Smartkey), khởi động xe từ xa.",
+      "Kiểm soát chống trộm và còi báo động."
+    ],
+    "communication": "Là master node của miền Body-CAN và có hàng tá nhánh LIN (BCM-LIN) điều khiển các mô-tơ/cảm biến phụ."
   },
   {
     "id": "ccu",
@@ -568,11 +812,16 @@
     "acronym": "CCU",
     "phonetic": "/ˈklaɪmət kənˈtrəʊl ˈjuːnɪt/",
     "vietnamese": "Điều khiển nhiệt độ",
-    "description": "Màn hình chỉnh máy lạnh.",
+    "description": "Mô-đun điều khiển khí hậu (Climate Control Unit).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Nhận lệnh từ màn hình MHU, tự động điều chỉnh tốc độ quạt gió và cửa gió (HVAC).",
+      "Duy trì nhiệt độ độc lập (2 vùng, 3 vùng) dựa trên cảm biến nhiệt trong xe."
+    ],
+    "communication": "Body-CAN."
   },
   {
     "id": "itse",
@@ -580,11 +829,16 @@
     "acronym": "ITSe",
     "phonetic": "/ɪnˈtɜːnl ˈtɛmprətʃər ˈsɛnsər/",
     "vietnamese": "Cảm biến nhiệt độ trong",
-    "description": "Đo nhiệt độ cabin.",
+    "description": "Cảm biến nhiệt độ và độ ẩm khoang nội thất.",
     "tag": "Sensor",
     "parentId": "ccu",
     "edgeType": "ccu-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Đo chính xác nhiệt độ và độ ẩm trong xe.",
+      "Cung cấp thông tin để CCU chống mờ kính tự động."
+    ],
+    "communication": "CCU-LIN."
   },
   {
     "id": "apm",
@@ -592,11 +846,16 @@
     "acronym": "APM",
     "phonetic": "/ˈænti-pɪntʃ ˈmɒdjuːl/",
     "vietnamese": "Mô-đun chống kẹt kính",
-    "description": "Nâng hạ kính an toàn.",
+    "description": "Mô-đun điều khiển nâng hạ kính chống kẹt (Anti-Pinch Module).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "apm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Điều khiển mô-tơ lên xuống kính tự động 1 chạm.",
+      "Tự động dừng và đảo chiều khi phát hiện có vật cản (tay, cổ) vướng vào."
+    ],
+    "communication": "APM-LIN kết nối với BCM."
   },
   {
     "id": "dsb",
@@ -604,11 +863,15 @@
     "acronym": "DSB",
     "phonetic": "/dɔːr swɪtʃ blɒk/",
     "vietnamese": "Công tắc cửa",
-    "description": "Phím bấm lên kính.",
+    "description": "Cụm phím bấm trên tapi cửa người lái (Door Switch Block).",
     "tag": "Body",
     "parentId": "apm",
     "edgeType": "apm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Gom cụm nút chỉnh kính, gập gương, khóa cửa."
+    ],
+    "communication": "APM-LIN"
   },
   {
     "id": "psmd",
@@ -616,11 +879,16 @@
     "acronym": "PSM-D",
     "phonetic": "/ˈpaʊər siːt ˈmɛməri/",
     "vietnamese": "Nhớ ghế lái",
-    "description": "Cài đặt vị trí ghế.",
+    "description": "Hộp điều khiển ghế lái chỉnh điện có bộ nhớ (Power Seat Memory - Driver).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Nhớ vị trí ghế, gương chiếu hậu và vô lăng theo hồ sơ người lái (Profile 1, 2, 3).",
+      "Quản lý chức năng massage và đệm lưng."
+    ],
+    "communication": "Body-CAN."
   },
   {
     "id": "shvu",
@@ -628,11 +896,16 @@
     "acronym": "SHVU-F/R",
     "phonetic": "/siːt ˈhiːtɪŋ ænd ˌvɛntɪˈleɪʃən/",
     "vietnamese": "Sưởi/Mát ghế",
-    "description": "Tiện nghi ghế ngồi.",
+    "description": "Mô-đun điều khiển sưởi và làm mát ghế (Seat Heating & Ventilation).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Kích hoạt quạt thông gió dưới đệm và thanh sưởi dựa trên cài đặt.",
+      "Tự động bật sưởi ghế nếu trời quá lạnh."
+    ],
+    "communication": "Body-CAN."
   },
   {
     "id": "ocs",
@@ -640,11 +913,16 @@
     "acronym": "OCS",
     "phonetic": "/ˈɒkjʊpənt ˌklæsɪfɪˈkeɪʃən ˈsɛnsər/",
     "vietnamese": "Cảm biến trọng lượng ghế",
-    "description": "Nhận biết có người ngồi.",
+    "description": "Cảm biến nhận diện có người ngồi (Occupant Classification Sensor) đặt dưới đệm ghế.",
     "tag": "Sensor",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Phát hiện xem ghế có hành khách hay không và phân loại cân nặng.",
+      "Quyết định xem có bật chuông cảnh báo thắt dây an toàn và quyết định bung túi khí khi va chạm hay không."
+    ],
+    "communication": "Body-CAN kết nối với ACM."
   },
   {
     "id": "etg",
@@ -652,11 +930,16 @@
     "acronym": "ETG",
     "phonetic": "/ɪˈlɛktrɪk teɪl ɡeɪt/",
     "vietnamese": "Cốp điện",
-    "description": "Mở cốp tự động.",
+    "description": "Hệ thống cốp điện tự động (Electric Tail Gate).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Điều khiển 2 ty thủy lực điện nâng hạ cửa cốp sau.",
+      "Chống kẹt cốp."
+    ],
+    "communication": "Body-CAN."
   },
   {
     "id": "trm",
@@ -664,11 +947,16 @@
     "acronym": "TRM",
     "phonetic": "/ˈtreɪlər ˈmɒdjuːl/",
     "vietnamese": "Mô-đun rơ-moóc",
-    "description": "Giao tiếp xe kéo.",
+    "description": "Mô-đun điều khiển rơ-moóc kéo theo (Trailer Module).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Nhận diện khi có rơ-moóc cắm vào (cho xe SUV, Bán tải).",
+      "Đồng bộ đèn phanh, xi-nhan cho xe kéo phía sau và vô hiệu hóa cảm biến lùi."
+    ],
+    "communication": "Body-CAN."
   },
   {
     "id": "wlc",
@@ -676,11 +964,16 @@
     "acronym": "WLC",
     "phonetic": "/ˈwaɪələs ˈtʃɑːrdʒər/",
     "vietnamese": "Sạc không dây",
-    "description": "Bệ sạc chuẩn Qi.",
+    "description": "Bệ sạc điện thoại không dây chuẩn Qi.",
     "tag": "Body",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Sạc điện thoại (thường 15W - 50W).",
+      "Cảnh báo khi có vật kim loại rơi vào bề mặt sạc (FOD)."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "fks",
@@ -688,11 +981,16 @@
     "acronym": "FKS",
     "phonetic": "/fʊt kɪk ˈsɛnsər/",
     "vietnamese": "Cảm biến đá cốp",
-    "description": "Đá gầm mở cốp.",
+    "description": "Cảm biến chân đá cốp (Foot Kick Sensor).",
     "tag": "Sensor",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Phát hiện thao tác đá chân dưới gầm cản sau.",
+      "Nếu chìa khóa nằm trong tầm gần, sẽ ra lệnh ETG mở cốp rảnh tay."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "rls",
@@ -700,11 +998,16 @@
     "acronym": "RLS",
     "phonetic": "/reɪn-laɪt ˈsɛnsər/",
     "vietnamese": "Cảm biến gạt mưa/đèn",
-    "description": "Auto đèn pha và gạt mưa.",
+    "description": "Cảm biến gạt mưa và ánh sáng (Rain-Light Sensor).",
     "tag": "Sensor",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Khúc xạ hồng ngoại để đo lượng nước mưa trên kính, điều chỉnh tốc độ gạt.",
+      "Cảm nhận độ sáng môi trường để tự động bật/tắt đèn pha."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "scm",
@@ -712,11 +1015,16 @@
     "acronym": "SCM",
     "phonetic": "/ˈstɪərɪŋ ˈkɒləm ˈmɒdjuːl/",
     "vietnamese": "Mô-đun cụm vô lăng",
-    "description": "Gạt mưa và xi nhan.",
+    "description": "Cụm công tắc đa năng dưới vô lăng (Steering Column Module).",
     "tag": "Body",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Chứa cần gạt mưa, cần xi-nhan và công tắc đèn.",
+      "Đọc góc xoay vô lăng nếu tích hợp SAS."
+    ],
+    "communication": "BCM-LIN."
   },
   {
     "id": "bas",
@@ -724,11 +1032,16 @@
     "acronym": "BAS",
     "phonetic": "/ˈbætəri ˈsɛnsər/",
     "vietnamese": "Cảm biến ắc quy 12V",
-    "description": "Theo dõi bình 12V.",
+    "description": "Cảm biến ắc quy 12V thông minh (Battery Sensor).",
     "tag": "Sensor",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Đo dòng điện sạc/xả, điện áp, nhiệt độ của ắc quy 12V.",
+      "Báo cáo độ chai (SOH) để DCDC kịp thời sạc bồi dưỡng, tránh kiệt bình chết máy giữa đường."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "srgm",
@@ -736,11 +1049,15 @@
     "acronym": "SRGM",
     "phonetic": "/ˈsʌnruːf ɡlɑːs ˈməʊtər/",
     "vietnamese": "Kính cửa sổ trời",
-    "description": "Mô tơ kéo kính.",
+    "description": "Mô tơ kính cửa sổ trời (Sunroof Glass Motor).",
     "tag": "Body",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Kéo mở/đóng kính cửa sổ trời."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "srbm",
@@ -748,11 +1065,15 @@
     "acronym": "SRBM",
     "phonetic": "/ˈsʌnruːf blaɪnd ˈməʊtər/",
     "vietnamese": "Rèm cửa sổ trời",
-    "description": "Mô tơ kéo rèm.",
+    "description": "Mô tơ rèm che nắng (Sunroof Blind Motor).",
     "tag": "Body",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Kéo mở/đóng rèm vải cửa sổ trời."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "hlm",
@@ -760,11 +1081,15 @@
     "acronym": "HLMFL/R",
     "phonetic": "/ˈhɛdlæmp ˈlɛvəlɪŋ ˈməʊtər/",
     "vietnamese": "Mô-tơ chỉnh pha",
-    "description": "Cao thấp đèn pha.",
+    "description": "Mô tơ cân bằng độ cao đèn pha (Headlamp Leveling).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "body-can",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Tự động chúi đèn xuống khi xe chở nặng để không làm chói mắt xe đối diện."
+    ],
+    "communication": "Body-CAN"
   },
   {
     "id": "alm",
@@ -772,11 +1097,16 @@
     "acronym": "ALM 1-5",
     "phonetic": "/ˈæmbiənt laɪt ˈmɒdjuːlz/",
     "vietnamese": "Đèn viền nội thất",
-    "description": "Cụm đèn LED quanh xe.",
+    "description": "Hệ thống đèn viền nội thất (Ambient Light Modules).",
     "tag": "Body",
     "parentId": "bcm",
     "edgeType": "bcm-lin",
-    "domain": "body"
+    "domain": "body",
+    "functions": [
+      "Hiển thị dải màu LED RGB trong khoang xe.",
+      "Có thể chớp nháy cảnh báo đỏ khi mở cửa có vật cản."
+    ],
+    "communication": "BCM-LIN"
   },
   {
     "id": "mfs",
@@ -784,11 +1114,16 @@
     "acronym": "MFS",
     "phonetic": "/ˈmʌlti-ˈfʌŋkʃən swɪtʃɪz/",
     "vietnamese": "Phím vô lăng",
-    "description": "Điều khiển âm lượng, ga tự động.",
+    "description": "Cụm phím chức năng trên vô lăng (Multi-Function Switches).",
     "tag": "Body",
     "parentId": "xgw",
     "edgeType": "lin",
-    "domain": "center"
+    "domain": "center",
+    "functions": [
+      "Bấm còi, nghe gọi, tăng giảm âm lượng.",
+      "Kích hoạt chức năng Cruise Control / Tự lái ADAS."
+    ],
+    "communication": "Info-CAN hoặc LIN qua SCM"
   },
   {
     "id": "hod",
@@ -796,10 +1131,135 @@
     "acronym": "HOD",
     "phonetic": "/hændz ɒn dɪˈtɛkʃən/",
     "vietnamese": "Cảm biến cầm vô lăng",
-    "description": "Báo động khi buông vô lăng.",
+    "description": "Cảm biến chạm vô lăng (Hands On Detection).",
     "tag": "Sensor",
     "parentId": "xgw",
     "edgeType": "lin",
-    "domain": "center"
+    "domain": "center",
+    "functions": [
+      "Cảm biến điện dung bọc quanh vành vô lăng.",
+      "Báo cáo cho ADAS biết người lái có đang đặt tay trên vô lăng khi tính năng tự lái hoạt động không."
+    ],
+    "communication": "LIN tới SCM hoặc Info-CAN"
+  },
+  {
+    "id": "uds",
+    "term": "Unified Diagnostic Services",
+    "acronym": "UDS",
+    "phonetic": "/ˈjuːnɪfaɪd ˌdaɪəɡˈnɒstɪk ˈsɜːvɪsɪz/",
+    "vietnamese": "Dịch vụ chẩn đoán thống nhất",
+    "description": "Giao thức dịch vụ chẩn đoán thống nhất theo chuẩn ISO 14229, dùng để lập trình, đọc lỗi và điều khiển ECU qua cổng Diag-CAN và thiết bị OBD.",
+    "tag": "Diagnostic",
+    "parentId": "xgw",
+    "edgeType": "diag-can",
+    "domain": "diagnostic"
+  },
+  {
+    "id": "dtc",
+    "term": "Diagnostic Trouble Code",
+    "acronym": "DTC",
+    "phonetic": "/ˌdaɪəɡˈnɒstɪk ˈtrʌbəl kəʊd/",
+    "vietnamese": "Mã lỗi chẩn đoán",
+    "description": "Mã lỗi chẩn đoán (ví dụ: lỗi cảm biến, đứt mạch) được lưu trong bộ nhớ của từng ECU (như BMS, IDB, BCM) khi phát hiện sự cố.",
+    "tag": "Diagnostic",
+    "parentId": "uds",
+    "edgeType": "diag-can",
+    "domain": "diagnostic"
+  },
+  {
+    "id": "did",
+    "term": "Data Identifier",
+    "acronym": "DID",
+    "phonetic": "/ˈdeɪtə aɪˈdɛntɪfaɪər/",
+    "vietnamese": "Định danh dữ liệu",
+    "description": "Định danh dữ liệu trong UDS, dùng để đọc các thông số thời gian thực hoặc thông tin cấu hình bên trong ECU (như số VIN, nhiệt độ pin, phiên bản phần mềm).",
+    "tag": "Diagnostic",
+    "parentId": "uds",
+    "edgeType": "diag-can",
+    "domain": "diagnostic"
+  },
+  {
+    "id": "fota",
+    "term": "Firmware / Software Over-The-Air",
+    "acronym": "FOTA / SOTA",
+    "phonetic": "/ˈfɜːmwɛər / ˈsɒftwɛər ˈəʊvər-ði-ɛər/",
+    "vietnamese": "Cập nhật phần mềm từ xa",
+    "description": "Cập nhật phần mềm/firmware từ xa không dây thông qua mô-đun viễn thông T-Box kết nối qua XGW.",
+    "tag": "Software",
+    "parentId": "tbox",
+    "edgeType": "ethernet",
+    "domain": "software"
+  },
+  {
+    "id": "eol",
+    "term": "End-of-Line",
+    "acronym": "EOL",
+    "phonetic": "/ɛnd-ɒv-laɪn/",
+    "vietnamese": "Kiểm tra cuối dây chuyền",
+    "description": "Quy trình kiểm tra, cấu hình và nạp dữ liệu cuối cùng cho các ECU khi xe hoàn thiện trên dây chuyền lắp ráp nhà máy.",
+    "tag": "Manufacturing",
+    "parentId": "xgw",
+    "edgeType": "diag-can",
+    "domain": "manufacturing"
+  },
+  {
+    "id": "canfd",
+    "term": "Controller Area Network Flexible Data-rate",
+    "acronym": "CAN FD",
+    "phonetic": "/kənˈtrəʊlər ˈɛəriə ˈnɛtwɜːk ˈflɛksəbəl ˈdeɪtə-reɪt/",
+    "vietnamese": "Mạng CAN tốc độ linh hoạt",
+    "description": "Chuẩn mạng CAN cải tiến cho phép truyền dữ liệu tốc độ cao hơn và payload lớn hơn so với CAN truyền thống.",
+    "tag": "Network",
+    "parentId": "xgw",
+    "edgeType": "canfd",
+    "domain": "network"
+  },
+  {
+    "id": "doip",
+    "term": "Diagnostics over Internet Protocol",
+    "acronym": "DoIP",
+    "phonetic": "/ˌdaɪəɡˈnɒstɪks ˈəʊvər ˈɪntərnɛt ˈprəʊtəkɒl/",
+    "vietnamese": "Chẩn đoán qua IP",
+    "description": "Giao thức truyền tải các lệnh chẩn đoán UDS thông qua mạng Ethernet, thường dùng cho các ECU có băng thông lớn như ADAS hoặc bộ định tuyến XGW.",
+    "tag": "Diagnostic",
+    "parentId": "xgw",
+    "edgeType": "ethernet",
+    "domain": "network"
+  },
+  {
+    "id": "autosar",
+    "term": "AUTomotive Open System ARchitecture",
+    "acronym": "AUTOSAR",
+    "phonetic": "/ˈɔːtəʊˌsɑːr/",
+    "vietnamese": "Kiến trúc hệ thống mở ô tô",
+    "description": "Kiến trúc phần mềm tiêu chuẩn mở (chia thành Classic AUTOSAR cho các hệ thống thời gian thực và Adaptive AUTOSAR cho hệ thống tính toán hiệu năng cao như ADAS và khoang lái).",
+    "tag": "Software",
+    "parentId": "xgw",
+    "edgeType": "software",
+    "domain": "software"
+  },
+  {
+    "id": "asil",
+    "term": "Automotive Safety Integrity Level",
+    "acronym": "ASIL",
+    "phonetic": "/ˈeɪsɪl/",
+    "vietnamese": "Mức độ toàn vẹn an toàn ô tô",
+    "description": "Mức độ toàn vẹn an toàn ô tô (từ ASIL-A đến ASIL-D) theo chuẩn ISO 26262, phân loại mức độ rủi ro an toàn của các hệ thống như phanh (IDB) hay lái (EPS).",
+    "tag": "Safety",
+    "parentId": "xgw",
+    "edgeType": "safety",
+    "domain": "safety"
+  },
+  {
+    "id": "nm",
+    "term": "Network Management",
+    "acronym": "NM",
+    "phonetic": "/ˈnɛtwɜːk ˈmænɪdʒmənt/",
+    "vietnamese": "Quản lý mạng",
+    "description": "Giao thức quản lý mạng, quy định cách các ECU (ví dụ VCU, BCM) thức dậy (Wake-up) hoặc đi ngủ (Sleep/Go-to-sleep) để tiết kiệm điện ắc quy 12V.",
+    "tag": "Network",
+    "parentId": "xgw",
+    "edgeType": "network",
+    "domain": "network"
   }
 ]

@@ -26,9 +26,23 @@ export default function TermModal({ term, onClose }) {
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">
             {term.acronym}
           </h2>
-          <p className="text-lg font-medium text-slate-600 dark:text-slate-300 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
+          <p className="text-lg font-medium text-slate-600 dark:text-slate-300 mb-2">
             {term.term}
           </p>
+          
+          <div className="mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300">
+              Hệ thống: {
+                term.domain === 'info' ? 'Thông tin giải trí (Infotainment)' :
+                term.domain === 'center' ? 'Kiểm soát trung tâm (Central)' :
+                term.domain === 'adas' ? 'Hỗ trợ người lái (ADAS)' :
+                term.domain === 'chassis' ? 'Khung gầm (Chassis)' :
+                term.domain === 'powertrain' ? 'Truyền động (Powertrain)' :
+                term.domain === 'thermal' ? 'Quản lý nhiệt (Thermal)' :
+                term.domain === 'body' ? 'Thân vỏ (Body)' : term.domain
+              }
+            </span>
+          </div>
           
           <div className="space-y-4">
             <div>
@@ -42,6 +56,26 @@ export default function TermModal({ term, onClose }) {
                 {term.description}
               </p>
             </div>
+            
+            {term.functions && term.functions.length > 0 && (
+              <div className="pt-2">
+                <h3 className="text-sm font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Chức năng chính</h3>
+                <ul className="list-disc pl-5 text-slate-700 dark:text-slate-300 leading-relaxed space-y-1">
+                  {term.functions.map((func, idx) => (
+                    <li key={idx}>{func}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {term.communication && (
+              <div className="pt-2">
+                <h3 className="text-sm font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Giao tiếp & Kết nối</h3>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {term.communication}
+                </p>
+              </div>
+            )}
             
             {term.related && term.related.length > 0 && (
               <div className="pt-4 mt-2">
